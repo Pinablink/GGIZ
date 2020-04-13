@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../header/header.h"
 #include "../header/constructReplace.h"
-
+#include "../header/outPutFactory.h"
 
 FILE *OUTPUT;
 
@@ -13,16 +13,17 @@ unsigned int main (void) {
       int linhas =  0;
       int colunas = 0;
 
-     system ("cls");
-     printf ("%s", INIT_WELCOME); 
-     system ("PAUSE");
-     system ("cls");
-     printf ("%s\n", QT_LINHAS);
-     scanf ("%d", &linhas);
-     printf ("%s\n", QT_COLUNAS);   
-     scanf ("%d", &colunas);
-     fflush (stdin);
-     montagem (linhas, colunas);   
+      iniciarRecursos ();
+      system ("cls");
+      printf ("%s", INIT_WELCOME); 
+      system ("PAUSE");
+      system ("cls");
+      printf ("%s\n", QT_LINHAS);
+      scanf ("%d", &linhas);
+      printf ("%s\n", QT_COLUNAS);   
+      scanf ("%d", &colunas);
+      fflush (stdin);
+      montagem (linhas, colunas);   
     
     return 0;
 }
@@ -35,24 +36,29 @@ void montagem (int linhas, int colunas) {
     system ("cls");
     printf (AVISO_PROCESSAMENTO, linhas, colunas);
     system ("PAUSE");
+    
+    char *linha       = __estrutura_linha__.data;
+    char *strLinhaFim = __estrutura_linha__.dataEnd;
 
-    for (; contadorLinha <= linhas; contadorLinha++) {
+    for (; contadorLinha < linhas; contadorLinha++) {
        
-       char *linha = (char*)calloc (LEN_STR_ESTRUTURA_LINHA, sizeof(char)); 
-       linha = ESTRUTURA_LINHA;
-       
-       printf ("%s\n", linha);
+       //ENVIAR PARA OUTPUT
+       printf ("%s", linha);
 
             for (; contadorColuna < colunas; contadorColuna++) {
-                char *strColuna = getCol (contadorLinha, contadorColuna);
+                
+                //char *strColuna = getCol (contadorLinha, contadorColuna);
                 //ENVIAR PARA OUTPUT AQUI
-                printf ("%s\n", strColuna);
-                free (strColuna);
+                getCol (contadorLinha, contadorColuna);
+                //free (strColuna);
             }
 
-       //contadorColuna = 0; 
-       free (linha);
-
+        //ENVIAR PARA OUTPUT
+        printf ("%s", strLinhaFim);
+       contadorColuna = 0; 
+       
     }
 
+    free (linha);
+    free (strLinhaFim);
 }
