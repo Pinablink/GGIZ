@@ -1,6 +1,8 @@
 #ifndef _CONSTRUCT_REPLACE
 #define _CONSTRUCT_REPLACE
 
-void getCol (int vline, int vcol);
+typedef void(*asmOutPut)(char*);
+
+void procCol (int vline, int vcol, asmOutPut asmOut);
 
 #endif

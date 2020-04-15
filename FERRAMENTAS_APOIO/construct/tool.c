@@ -8,6 +8,7 @@
 FILE *OUTPUT;
 
 void montagem (int linhas, int colunas);
+void escrever (char * conteudo);
 
 unsigned int main (void) {
       int linhas =  0;
@@ -49,7 +50,7 @@ void montagem (int linhas, int colunas) {
                 
                 //char *strColuna = getCol (contadorLinha, contadorColuna);
                 //ENVIAR PARA OUTPUT AQUI
-                getCol (contadorLinha, contadorColuna);
+                procCol (contadorLinha, contadorColuna, &escrever);
                 //free (strColuna);
             }
 
@@ -61,4 +62,8 @@ void montagem (int linhas, int colunas) {
 
     free (linha);
     free (strLinhaFim);
+}
+
+void escrever (char * conteudo) {
+    printf ("/%s\n", conteudo);
 }
