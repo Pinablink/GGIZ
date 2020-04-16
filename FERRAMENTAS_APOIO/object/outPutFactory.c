@@ -4,8 +4,8 @@ static void iLinha () {
     __estrutura_linha__  =  *(ESTRUTURA_LINHA*) malloc (sizeof(ESTRUTURA_LINHA));
     __estrutura_linha__.LEN_STR_ESTRUTURA_LINHA = 20;
     __estrutura_linha__.LEN_STR_DATA_END        = 7;
-    __estrutura_linha__.data                    = (char*) calloc (__estrutura_linha__.LEN_STR_ESTRUTURA_LINHA ,sizeof(char));
-    __estrutura_linha__.dataEnd                 = (char*) calloc (__estrutura_linha__.LEN_STR_DATA_END, sizeof(char));
+    __estrutura_linha__.data                    = (char*) malloc (__estrutura_linha__.LEN_STR_ESTRUTURA_LINHA);
+    __estrutura_linha__.dataEnd                 = (char*) malloc (__estrutura_linha__.LEN_STR_DATA_END);
 
    *(__estrutura_linha__.data + 0)   =  0x3c;
    *(__estrutura_linha__.data + 1)   =  0x64;
@@ -42,7 +42,7 @@ static void iColuna () {
     __estrutura_coluna__.LEN_STR_REF_LINHA_UN            =   51; 
     __estrutura_coluna__.CHAR_POS_REP_ESTRUTURA_LINHA    =   29;
     __estrutura_coluna__.CHAR_POS_REP_ESTRUTURA_COLUNA   =   37;  
-    __estrutura_coluna__.data                            =   (char*) calloc (__estrutura_coluna__.LEN_STR_REF_LINHA_UN, sizeof(char));
+    __estrutura_coluna__.data                            =   (char*) malloc (__estrutura_coluna__.LEN_STR_REF_LINHA_UN);
 
     *(__estrutura_coluna__.data + 0)                     = 0x3c;
     *(__estrutura_coluna__.data + 1)                     = 0x64;

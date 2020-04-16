@@ -11,7 +11,24 @@ void montagem (int linhas, int colunas);
 void escrever (char * conteudo);
 
 unsigned int main (void) {
-      int linhas =  0;
+      
+    /*int a = 2;  
+    char *p = (char*)malloc(a);
+    
+    //char *p = &teste;
+
+    printf ("\n\n%d", strlen(p));
+    *(p + 0) = '1';
+    *(p + 1) = '2';
+    
+    
+    printf ("\n\n%s", p);
+    printf ("\n\n%c", *(p + 0));
+    printf ("\n\n%c", *(p + 1));
+    *(p + 1) = '4';
+    printf ("\n\n%s", p);*/
+    //printf ("\n\n%c", *(p + 2));
+     int linhas =  0;
       int colunas = 0;
 
       iniciarRecursos ();
@@ -65,5 +82,5 @@ void montagem (int linhas, int colunas) {
 }
 
 void escrever (char * conteudo) {
-    printf ("/%s\n", conteudo);
+    printf ("%s\n", conteudo);
 }
