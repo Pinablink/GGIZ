@@ -1,0 +1,1 @@
+constructPaint.exe 64 128  > ModelPaintgGGIZ.dat

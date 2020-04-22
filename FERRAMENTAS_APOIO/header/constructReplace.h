@@ -1,8 +1,8 @@
 #ifndef _CONSTRUCT_REPLACE
 #define _CONSTRUCT_REPLACE
 
-typedef void(*asmOutPut)(char*);
+#include "ctType.h"
 
-void procCol (int vline, int vcol, asmOutPut asmOut);
+void procCol (int vline, int vcol);
 
 #endif

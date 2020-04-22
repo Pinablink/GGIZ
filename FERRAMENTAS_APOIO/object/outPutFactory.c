@@ -4,8 +4,8 @@ static void iLinha () {
     __estrutura_linha__  =  *(ESTRUTURA_LINHA*) malloc (sizeof(ESTRUTURA_LINHA));
     __estrutura_linha__.LEN_STR_ESTRUTURA_LINHA = 20;
     __estrutura_linha__.LEN_STR_DATA_END        = 7;
-    __estrutura_linha__.data                    = (char*) malloc (__estrutura_linha__.LEN_STR_ESTRUTURA_LINHA);
-    __estrutura_linha__.dataEnd                 = (char*) malloc (__estrutura_linha__.LEN_STR_DATA_END);
+    __estrutura_linha__.data                    = (byte*) malloc (__estrutura_linha__.LEN_STR_ESTRUTURA_LINHA);
+    __estrutura_linha__.dataEnd                 = (byte*) malloc (__estrutura_linha__.LEN_STR_DATA_END);
 
    *(__estrutura_linha__.data + 0)   =  0x3c;
    *(__estrutura_linha__.data + 1)   =  0x64;
@@ -39,10 +39,8 @@ static void iLinha () {
 
 static void iColuna () {
     __estrutura_coluna__                                 =   *(ESTRUTURA_COLUNA*) malloc (sizeof (ESTRUTURA_COLUNA));
-    __estrutura_coluna__.LEN_STR_REF_LINHA_UN            =   51; 
-    __estrutura_coluna__.CHAR_POS_REP_ESTRUTURA_LINHA    =   29;
-    __estrutura_coluna__.CHAR_POS_REP_ESTRUTURA_COLUNA   =   37;  
-    __estrutura_coluna__.data                            =   (char*) malloc (__estrutura_coluna__.LEN_STR_REF_LINHA_UN);
+    __estrutura_coluna__.LEN_STR_REF_LINHA_UN            =   50; 
+    __estrutura_coluna__.data                            =   (byte *) malloc (50);
 
     *(__estrutura_coluna__.data + 0)                     = 0x3c;
     *(__estrutura_coluna__.data + 1)                     = 0x64;
@@ -73,7 +71,7 @@ static void iColuna () {
     *(__estrutura_coluna__.data + 26)                    = 0x6e;
     *(__estrutura_coluna__.data + 27)                    = 0x68;
     *(__estrutura_coluna__.data + 28)                    = 0x61;
-    *(__estrutura_coluna__.data + 29)                    = 0x24;
+    *(__estrutura_coluna__.data + 29)                    = 0x23;
     *(__estrutura_coluna__.data + 30)                    = 0x5f;
     *(__estrutura_coluna__.data + 31)                    = 0x63;
     *(__estrutura_coluna__.data + 32)                    = 0x6f;
@@ -81,7 +79,7 @@ static void iColuna () {
     *(__estrutura_coluna__.data + 34)                    = 0x75;
     *(__estrutura_coluna__.data + 35)                    = 0x6e;
     *(__estrutura_coluna__.data + 36)                    = 0x61;
-    *(__estrutura_coluna__.data + 37)                    = 0x23;
+    *(__estrutura_coluna__.data + 37)                    = 0x24;
     *(__estrutura_coluna__.data + 38)                    = 0x22;
     *(__estrutura_coluna__.data + 39)                    = 0x20;
     *(__estrutura_coluna__.data + 40)                    = 0x76;
@@ -93,8 +91,7 @@ static void iColuna () {
     *(__estrutura_coluna__.data + 46)                    = 0x22;
     *(__estrutura_coluna__.data + 47)                    = 0x30; 
     *(__estrutura_coluna__.data + 48)                    = 0x22;
-    *(__estrutura_coluna__.data + 49)                    = 0x2f;
-    *(__estrutura_coluna__.data + 50)                    = 0x3e;      
+    *(__estrutura_coluna__.data + 49)                    = 0x3e;      
 }
 
 void  iniciarRecursos (void) {
