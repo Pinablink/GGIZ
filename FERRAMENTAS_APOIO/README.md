@@ -1,6 +1,9 @@
 # Ferramentas de Apoio
-Aqui estão disponiveis Ferramentas de Apoio para o desenvolvimento do GGIZ. Todas as Ferramentas foram desenvolvidas para essa finalidade.<br/>
-Caso seja necessário a outro projeto futuro, estará disponivel. Mas no ambiente do GGIZ terá que manter sua originalidade.
+## Disponíveis Ferramentas de Apoio para o Desenvolvimento do GGIZ. 
+
+Todas as Ferramentas são desenvolvidas para essa finalidade. Caso seja necessário a utilizaççao em outro projeto futuro, deverá ser avaliado adaptações ou modificações.
+<br/>
+No ambiente do GGIZ esse fonte terá que manter sua originalidade.
 
 ## Ferramentas Disponiveis
 
@@ -10,8 +13,7 @@ Sua função é construir uma estrutura matricial com elementos do tipo div.
 <br/>
 ![Menu](img/ggizPaint.jpg)
 <br/>
-Para efetuar a construção da estrutura execute o bat run disponivel no diretório construct. Os parâmetros do Arquivo bat podem ser editados<br/>
-conforme a necessidade do projeto.
+Para efetuar a construção da estrutura execute o bat run disponivel no diretório construct. Os parâmetros do arquivo bat podem ser editados conforme a necessidade do projeto.
 
 Primeiro Parâmetro<br/>
 Número de Linhas da Estrutura
