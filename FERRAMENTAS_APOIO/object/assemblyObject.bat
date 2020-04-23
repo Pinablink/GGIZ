@@ -1,0 +1,1 @@
+gcc -w constructReplace.c -c 

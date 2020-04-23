@@ -1,0 +1,1 @@
+gcc ../object/constructReplace.o ../object/outPutFactory.o tool.c -o constructPaint
