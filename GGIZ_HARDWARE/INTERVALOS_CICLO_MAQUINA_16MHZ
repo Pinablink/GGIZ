@@ -1,0 +1,29 @@
+
+
+Autor: Weber Alves dos Santos (Pinablink)
+
+Método de Programação do Tempo
+16MHz <-> 1S
+16000000 Ciclos de Maquina a Cada Segundo
+1/16000000 = 62,5 ns = Tempo de um ciclo
+
+Método em C
+__delay_cicle (dcm)
+
+Formula Para o Delay Cicle -> dcm = (te*f)
+
+Onde:
+te   = (tms / 1000)
+tms  =  Valor do Tempo em Milisegundo 
+1000 =  1 Segundo em Milisegundo 
+
+dcm = Delay de Ciclo de Maquina
+te  = Valor do tempo em espera por segundo
+f   = Frequencia do Ciclo de Maquina
+
+dcm = ((tms/1000) * f)
+dcm = ((500/1000) * 16000000)    = 8000000    Hz
+dcm = ((250/1000) * 16000000)    = 4000000    Hz  
+dcm = ((100/1000) * 16000000)    = 1600000    Hz
+dcm = ((10/1000)) * 16000000)    = 160000     Hz 
+dcn = ((120000/1000) * 16000000) = 1920000000 Hz (Dois Minutos Para Teste de Hardware em Desenvolvimento)
