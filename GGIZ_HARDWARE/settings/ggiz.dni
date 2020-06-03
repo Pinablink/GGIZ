@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=2082121520
+Checksum=-342731959
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -39,10 +39,9 @@ GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
 [Breakpoints2]
-Bp0=_ 1 "STD_CODE2" "{$PROJ_DIR$\asm.s43}.22.1" 0 0 1 "" 0 ""
-Bp1=_ 1 "STD_CODE2" "{$PROJ_DIR$\asm.s43}.20.1" 0 0 1 "" 0 ""
-Bp2=_ 1 "STD_CODE2" "{$PROJ_DIR$\asm.s43}.51.1" 0 0 1 "" 0 ""
-Count=3
+Bp0=_ 1 "STD_CODE2" "{$PROJ_DIR$\asm.s43}.110.1" 0 0 1 "" 0 ""
+Bp1=_ 1 "STD_CODE2" "{$PROJ_DIR$\asm.s43}.116.1" 0 0 1 "" 0 ""
+Count=2
 [Interrupts]
 Enabled=1
 [MemoryMap]
@@ -55,6 +54,13 @@ ActionState=1
 [Trace1]
 Enabled=0
 ShowSource=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [CallStackLog]
 Enabled=0
 [DriverProfiling]
@@ -64,8 +70,9 @@ Graph=0
 Symbiont=0
 Exclusions=
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\asm.s43}.25.1" 1 0 0 0 "" 0 ""
-Count=1
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\lib\SERIAL_COM.s43}.29.1" 1 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\lib\SERIAL_COM.s43}.16.1" 1 0 0 0 "" 0 ""
+Count=2
 [FET]
 Clock mode=38
 Extended Clock mode=-1
@@ -86,13 +93,6 @@ SP=0
 SR=0
 all registers=0
 File name=
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
 [Aliases]
 Count=0
 SuppressDialog=0

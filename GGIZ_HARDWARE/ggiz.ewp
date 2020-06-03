@@ -1966,10 +1966,34 @@
     <name>$PROJ_DIR$\asm.s43</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\lib\BEEP_CONTROL.s43</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\lib\CONFIG_UART_16MHZ.s43</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\lib\CONFIG_UART_1MHZ.s43</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\lib\DELAY_16MHZ.s43</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\lib\DELAY_1MHZ.s43</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\lib\DISPLAY_ST7920.s43</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\header\ggiz_header.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\lib\GGIZ_MESSAGE_SERVER.s43</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\lib\GGIZ_OPER.s43</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\lib\SERIAL_COM.s43</name>
   </file>
 </project>
 

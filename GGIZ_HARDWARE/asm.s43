@@ -1,8 +1,36 @@
+/*
+Autor: Weber Alves dos Santos (Pinablink)
+
+Configurações inmportantes [Comunicação Serial]
+P1.2 - TXD TRANSMISSAO DE DADOS
+P1.1 - RXD RECEPCAO DE DADOS
+
+15  14  13  12  11  10  9  8  7  6  5  4  3  2  1  0
+1   0   0   0   0   0   0  0  0  0  0  0  0  0  1  0
+
+ESTADO PARA O REGISTRADOR R15
+-----------------------------------------------------------------------------------------------
+STATUS BOTÃO                                      - BIT0   = QUANDO LIGADO, INFORMA QUE HOUVE UM COMANDO ACIONADO NO BOTAO
+STATUS DE OPERACAO                                - BIT1   = QUANDO LIGADO, INFORMA QUE O SISTEMA ESTA EM MODO DE SUPORTE
+STATUS DE COMNUNICACAO COM A MAQUINA DE SUPORTE   - BIT2   = QUANDO LIGADO, INFORMA QUE JÁ OCORREU COMUNICAÇAO COM O CANAL SERIAL DE SUPORTE
+STATUS DE COMUNICACAO WIFI                        - BIT3   = QUANDO LIGADO, INFORMA QUE EXISTE UM CANAL SERIAL PARA A REDE WIFI
+
+
+STATUS DE CONTROLE DE CONFIGURACAO                - BIT15  = QUANDO LIGADO, INFORMA EM CONJUNTO COM O STATUS EM QUESTÃO QUE O SISTEMA FOI CONFIGURADO
+
+
+NOTA SOBRE O BIT 2 DO R15
+O SISTEMA ENVIA UM COMANDO AT, CASO OCORRA O RETORNO AT+OK O SISTEMA FICA COM A CONEXÃO ABERTA COM A MAQUINA SERIAL DE SUPORTE.
+CASO NÃO OCORRA SUCESSO NESSA COMUNICAÇAO O SISTEMA FICA DE 10 EM 10 SEGUNDOS ENVIANDO SINAL. APÓS 5 TENTATIVAS, O SISTEMA RETORNA
+PARA SEU FUNCIONAMENTO PADRÃO
+*/
 ;----------------------------------------------------------------------------------------------
-#include "msp430g2553.h"             
+#include "msp430g2553.h"            
+#include "/header/ggiz_header.h"
+;----------------------------------------------------------------------------------------------
 ;----------------------------------------------------------------------------------------------
         NAME    GGIZ
-        EXTERN  DELAY_2MIN
+        EXTERN  DELAY_2MIN,SEND_HELLO,CONFIG_UART_9600,SIGNAL_INT,SIGNAL_PRESS_BUTTON,GGIZ_LOAD
 ;----------------------------------------------------------------------------------------------                                         
         RSEG    CSTACK                  
         RSEG    CODE                    
@@ -16,19 +44,21 @@ RESET:          MOV      #SFE(CSTACK), SP
                 JEQ      ERROR  
                 MOV.W    #0AAAAH,R4
                 JMP      RESET 
-RUN:            CALL     #CLEAR_PORTS
+RUN:            bis.b    #GIE,SR
+                CALL     #CLEAR_PORTS
                 CALL     #CLEAR_REGS
                 CALL     #CONFIG_PORTS
-                CALL     #DELAY_2MIN
-                BIS.B    #BIT4, &P2OUT
-                ;CALL     #DISPLAY_ST7920_CONFIG_PORT
-                JMP      $
+                CALL     #SIGNAL_INT  
+                ;CALL    #CONFIG_UART_9600
+                ;CALL    #SEND_HELLO ; CHAMA O TESTE DE OPERACIONALIDADE COM O WIFI
+                ;CALL    #DISPLAY_ST7920_CONFIG_PORT
+LOOP_SYS:       CALL     #LISTENER_COMMAND_INPUT_PRESS                
+                CALL     #GGIZ_LOAD
+                JMP      LOOP_SYS
 ERROR:          ; INFORMAR AO USUARIO QUE EXISTE UM ERRO. NÃO EXISTENCIA DO CLOCK ESPERADO
                 ; EXIBIR ERRO EM UM DISPLAY
                 JMP      $ 
 ;----------------------------------------------------------------------------------------------
-
-
 
 ;----------------------------------------------------------------------------------------------
 ; AREA ESPECIFICA DE CONFIGURAÇÃO BÁSICA DO HARDWARE
@@ -36,7 +66,15 @@ ERROR:          ; INFORMAR AO USUARIO QUE EXISTE UM ERRO. NÃO EXISTENCIA DO CLOC
 ;----------------------------------------------------------------------------------------------
 CONFIG_PORTS
 ;----------------------------------------------------------------------------------------------
-                BIS.B     #BIT4, &P2DIR
+                BIS.B     #BIT4,&P1DIR
+                ; CONFIGURACAO DO PINO COMO BOTAO
+                ; 
+                BIS.B     #BIT3,&P1OUT
+                BIS.B     #BIT3,&P1REN     
+                ;
+                ;
+                MOV.B     #00006h,&P1SEL
+                MOV.B     #00006h,&P1SEL2
                 RET
 ;----------------------------------------------------------------------------------------------
 ;----------------------------------------------------------------------------------------------
@@ -60,6 +98,11 @@ VER_FREQ_16MHZ ; VERIFICA SE EXISTE A OPÇÃO DE OSCILADOR DE 16MHZ
 NOK:            MOV.W    #0BBBBH,R4      
 BYE_VER:        CALL     #CALIB_16MHZ    
 ENDNOW_VER:     RET
+;----------------------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------------------
+CALIB_1MHZ ; CALIBRA PARA OPERAÇÃO EM 1MHZ
+;----------------------------------------------------------------------------------------------
+               RET
 ;----------------------------------------------------------------------------------------------
 ;----------------------------------------------------------------------------------------------
 CALIB_16MHZ ; CALIBRA PARA OPERAÇÃO EM 16MHZ
@@ -87,11 +130,61 @@ CLEAR_REGS  ; LIMPA TODOS OS REGISTRADORES
                 MOV.W    #00000H,R12
                 MOV.W    #00000H,R13
                 MOV.W    #00000H,R14
+                MOV.W    #00000H,R15
                 RET
 ;----------------------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------------------
+
+;----------------------------------------------------------------------------------------------
+;   AREA DE EVENTOS IHM (INTERFACE HOMEM MAQUINA)   
+;----------------------------------------------------------------------------------------------
+
+;----------------------------------------------------------------------------------------------
+LISTENER_COMMAND_INPUT_PRESS       
+;----------------------------------------------------------------------------------------------
+CMDPRESS:           BIT.B    #BIT3,&P1IN ; !!NOTA!! - ACOMPANHAR A EVOLUÇÃO DO CONTROLADOR ESTADO REGISTRADOR R15
+                    JC       NOP_CMD
+                    BIS.B    #BIT0,R15
+                    JMP      CMDPRESS
+NOP_CMD:            BIT.B    #BIT0,R15;TST      R15
+                    JC       COMMAND_INPUT
+                    JMP      OFF_PRESS
+COMMAND_INPUT:      CALL     #SIGNAL_PRESS_BUTTON
+                    ;  ATIVA O BIT DO STATUS DE OPERAÇAO PARA ENTRAR EM MODO SUPORTE
+                    BIS.B    #BIT1,R15
+                    BIC.B    #BIT0,R15 
+                    JMP      OFF_PRESS   
+ERROR_ENV:          NOP;RESERVADO PARA O CASO DE OCORRENCIA DE ERRO
+                    NOP;AINDA TERÁ DE SER IMPLEMENTADO
+OFF_PRESS:          NOP                     
+                    RET
+;----------------------------------------------------------------------------------------------
+
+;----------------------------------------------------------------------------------------------
+
+;----------------------------------------------------------------------------------------------
+;   AREA DO PROCESSAMENTO DAS INTERRUPÇOES DE COMUNICAÇAO SERIAL   
+;----------------------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------------------
+TRANSMISSAO_UART; 
+;----------------------------------------------------------------------------------------------
+                NOP
+                RETI
+;----------------------------------------------------------------------------------------------
+;----------------------------------------------------------------------------------------------
+RECEPCAO_UART  ; 
+;----------------------------------------------------------------------------------------------
+                NOP
+                RETI
+;----------------------------------------------------------------------------------------------
+
        COMMON      INTVEC
 ;----------------------------------------------------------------------------------------------
        ORG     RESET_VECTOR
        DW      RESET
+       ORG     USCIAB0TX_VECTOR
+       DW      TRANSMISSAO_UART
+       ORG     USCIAB0RX_VECTOR 
+       DW      RECEPCAO_UART
        END
 ;----------------------------------------------------------------------------------------------

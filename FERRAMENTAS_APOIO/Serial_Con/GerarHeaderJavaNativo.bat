@@ -1,0 +1,1 @@
+javah -d C:\Workspace\engenharia\labSerial\javaNativeInterface -classpath C:\Workspace\Java\ggizViewEEPROM\src net.ggiz.view.eeprom.ComPort

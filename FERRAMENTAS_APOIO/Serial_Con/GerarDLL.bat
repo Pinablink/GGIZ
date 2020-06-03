@@ -1,0 +1,1 @@
+gcc -Wl,--add-stdcall-alias -I "%JAVA_HOME%\include" -I "%JAVA_HOME%\include\win32" -shared -o ComPort.dll appSerial.c
