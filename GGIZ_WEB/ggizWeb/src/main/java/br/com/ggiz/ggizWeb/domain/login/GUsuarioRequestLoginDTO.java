@@ -10,33 +10,32 @@ import java.io.Serializable;
 public class GUsuarioRequestLoginDTO 
 		implements Serializable {
 
-	private String usuario;
-	private String senha;
+	private String usuarioLogin;
+	private String senhaLogin;
 	
 	public GUsuarioRequestLoginDTO () {
 		super ();
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUsuarioLogin() {
+		return usuarioLogin;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsuarioLogin(String usuarioLogin) {
+		this.usuarioLogin = usuarioLogin;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getSenhaLogin() {
+		return senhaLogin;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setSenhaLogin(String senhaLogin) {
+		this.senhaLogin = senhaLogin;
 	}
 
 	@Override
 	public String toString() {
-		return "GUsuarioDTO [usuario=" + usuario + ", senha=" + senha + "]";
+		return "GUsuarioRequestLoginDTO [usuarioLogin=" + usuarioLogin + ", senhaLogin=" + senhaLogin + "]";
 	}
-	
 	
 }

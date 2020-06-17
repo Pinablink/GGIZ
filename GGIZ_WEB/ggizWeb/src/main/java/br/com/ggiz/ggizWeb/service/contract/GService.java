@@ -1,5 +1,7 @@
 package br.com.ggiz.ggizWeb.service.contract;
 
+import javassist.NotFoundException;
+
 /**
  * 
  * @author Weber Alves dos Santos (Pinablink)
