@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ggiz.ggizWeb.domain.login.GUsuarioRequestLoginDTO;
-import br.com.ggiz.ggizWeb.domain.login.GUsuarioResponseLoginDTO;
+import br.com.ggiz.ggizWeb.domain.dto.GUsuarioRequestLoginDTO;
+import br.com.ggiz.ggizWeb.domain.dto.GUsuarioResponseLoginDTO;
 import br.com.ggiz.ggizWeb.service.contract.GService;
 
 /**

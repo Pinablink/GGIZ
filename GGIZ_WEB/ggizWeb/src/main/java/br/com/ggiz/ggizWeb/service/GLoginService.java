@@ -3,8 +3,9 @@ package br.com.ggiz.ggizWeb.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import br.com.ggiz.ggizWeb.domain.login.GUsuarioRequestLoginDTO;
-import br.com.ggiz.ggizWeb.domain.login.GUsuarioResponseLoginDTO;
+
+import br.com.ggiz.ggizWeb.domain.dto.GUsuarioRequestLoginDTO;
+import br.com.ggiz.ggizWeb.domain.dto.GUsuarioResponseLoginDTO;
 import br.com.ggiz.ggizWeb.exception.GGizWebNotFoundUser;
 import br.com.ggiz.ggizWeb.repository.GUsuarioRepository;
 import br.com.ggiz.ggizWeb.repository.entity.GUsuario;

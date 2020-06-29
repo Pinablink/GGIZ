@@ -1,1 +1,0 @@
-gcc -w outPutFactory.c -c 
