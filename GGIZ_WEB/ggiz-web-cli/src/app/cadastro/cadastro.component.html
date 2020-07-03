@@ -1,29 +1,71 @@
-<div class="container">
-  <div class="alert alert-success mt-2" role="alert">
-    <p>E aí!? Muito obrigado por vir!!Se chegou até aqui é porque você tem interesse em saber oque é esse tal de GGIZ.
-      Vou lhe adiantar que não é a grande revolução do século, se trata apenas da união de um Hardware, com a Internet e
-      você como indivíduo Principal!Essa ideia veio como um pulso violento na minha cabeça e estou muito feliz por colocar
-      a cada dia, um pouco disso para a realidade. Vamos juntos? Acompanhe essa pequena aventura, fazendo seu pré-cadastro
-      no sistema.Informe um usuario e um email. Olha, prometo que não vou lhe importunar. Você só vai receber algum mensagem
-      quando houver atualizações e novidades no sistema para você interagir!
-    </p>
-  </div>
-  <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Pré-Cadastro</div>
-        <div class="card-body">
-          <form method="POST">
-                <div class="form-group">
-                    <label for="usuario">Usuário</label>
-                    <input type="text" class="form-control" [(ngModel)] = "cadastro.usuario" name="usuario" id="usuario" placeholder="Informe aqui seu usuário">
+ <div class="container">
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Aviso</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Informe um Nome de Usuário e em seguida um Email válido para que possamos posteriormente entrar em contato. Utilize caracteres minusculos
+          e o range de a-z. Esse é um Pré-Cadastro e assim que o Sistema estiver com a Dashboard operacional você
+          poderá editar suas informações.
+        </p>
+      </div>
+    </ng-template>
+
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Bem Vindo!</h1>
+                  </div>
+                  <form class="user">
+                    <div class="form-group">
+                      <input  type="text" class="form-control form-control-user" [(ngModel)] = "cadastro.usuario" name="usuario" id="usuario" aria-describedby="usuario" placeholder="Informe o Usuário">
+                      <small id="usuarioHelp" class="form-text text-muted">Não utilize caracteres especiais nem letras maiusculas</small>
+                    </div>
+                    <div class="form-group">
+                      <input  type="email" class="form-control form-control-user" [(ngModel)] = "cadastro.email" name="email" id="email" placeholder="Seu Email">
+                      <small id="usuarioHelp" class="form-text text-muted">Informe um email válido</small>
+                    </div>
+                    <div *ngIf="sendCad; then issendcad; else notsendcad"></div>
+                    <ng-template #notsendcad>
+                    <button (click)="efetuarCadastro(template)" class="btn btn-primary btn-user btn-block">
+                        Pré-Cadastro..
+                    </button>
+                    <hr>
+                    <button class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Saiba um Pouco Mais!
+                    </button>
+                    </ng-template>
+                    <ng-template #issendcad>
+                    <button class="btn btn-primary btn-user btn-block">
+                         <span class="spinner-border spinner-border-sm"></span>
+                         Enviando Pré-Cadastro..
+                    </button>
+                    <hr>
+                    <button  class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Saiba um Pouco Mais!
+                    </button>
+                    </ng-template>
+                  </form>
                 </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" [(ngModel)] = "cadastro.email" name="email" id="email" placeholder="Informe aqui seu email">
-                </div>
-                <button (click)="efetuarCadastro()" class="btn btn-primary btn-block">
-                    Efetuar Pré-Cadastro
-                </button>
-          </form>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
+

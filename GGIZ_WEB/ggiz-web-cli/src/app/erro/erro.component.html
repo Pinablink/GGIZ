@@ -1,7 +1,20 @@
 <div class="container">
   <div class="alert alert-danger mt-5" role="alert">
-    <p>Ops!! Ocorreu um problema de nivel sistêmico no servidor que causou esse incomodo na sua operação.
-      Entre em contato por email com o responsavel técnico. Para que a situação seja avaliada!
-    </p>
+    <div *ngIf="serverNotFound; then servenotfounderror; else serverfounderror"></div>
+    <ng-template #serverfounderror>
+      <p>Ops!! Ocorreu um problema de nivel sistêmico no servidor que causou esse inconveniente.
+        O sistema notificou a base de erros e logo a situação será normalizada! Não desista por isso!
+        Contamos com sua nova visita em breve!
+      </p>
+    </ng-template>
+    <ng-template #servenotfounderror>
+      <p>Essa não!!! Algo ocorreu e o servidor não nos respondeu! Provavelmente esteja ocorrendo alguma manutenção no ambiente
+        e logo você poderá solicitar seu Pré-Cadastro conosco. Lembre-se é muito importante que você faça parte dessa experiência!
+      </p>
+    </ng-template>
+    <hr>
+    <a href="index.html" class="btn btn-google btn-user btn-block">
+      <i class="fab fa-google fa-fw"></i> Voltar para a Tela de Pré-Cadastro
+    </a>
   </div>
 </div>

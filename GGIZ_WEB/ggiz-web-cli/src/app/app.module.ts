@@ -8,6 +8,8 @@ import { AvisoComponent } from './aviso/aviso.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ErroComponent } from './erro/erro.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ErroComponent } from './erro/erro.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [HttpClientModule, PrecadastroService],
   bootstrap: [AppComponent]

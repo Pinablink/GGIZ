@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.ggiz.ggizWeb.util.GGizError;
 import br.com.ggiz.ggizWeb.util.GGizWebProperties;
+import br.com.ggiz.ggizWeb.util.GGResponseMessage;
 
 /**
  * 
@@ -26,10 +26,22 @@ public class GGizWebExceptionConfig
 	 @ExceptionHandler({
 		 GGizWebNotFoundUser.class
 	 })
-	public ResponseEntity<GGizError> ggizDataNotFound () {
-		 GGizError ggizError = new GGizError();
-		 ggizError.setMessage(gProperties.getMessage().getUserNotFound());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ggizError);
+	public ResponseEntity<GGResponseMessage> ggizDataNotFound () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getUserNotFound());
+		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
+	}
+	 
+	 
+	 @ExceptionHandler({
+		 GGizCadUserException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizCadUserError () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getErrCadUser());
+		 gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
+		 return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
 	}
 
 }

@@ -7,7 +7,7 @@ import {CadastroComponent} from './cadastro/cadastro.component';
 const routes: Routes = [
   {path: '', component: CadastroComponent},
   {path: 'aviso', component: AvisoComponent},
-  {path: 'erro', component: ErroComponent}
+  {path: 'erro/:conf', component: ErroComponent}
 ];
 
 @NgModule({

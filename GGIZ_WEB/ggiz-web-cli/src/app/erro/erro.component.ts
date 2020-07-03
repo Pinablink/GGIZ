@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ggiz-erro',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErroComponent implements OnInit {
 
-  constructor() { }
+  public serverNotFound: boolean;
+  constructor(private router: ActivatedRoute) { }
+
 
   ngOnInit(): void {
+    this.serverNotFound = ((this.router.snapshot.paramMap.get('conf')) === 'true');
   }
 
 }
