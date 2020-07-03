@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ggiz.ggizWeb.domain.dto.GGUsuarioRequestCreateDTO;
+import br.com.ggiz.ggizWeb.exception.GGizCadMailDupException;
+import br.com.ggiz.ggizWeb.exception.GGizCadMailUserDupException;
+import br.com.ggiz.ggizWeb.exception.GGizCadUserDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadUserException;
 import br.com.ggiz.ggizWeb.repository.GGTpUsuarioRepository;
 import br.com.ggiz.ggizWeb.repository.GGUsuarioRepository;
@@ -46,7 +49,10 @@ public class GGPreCadService
 		gUsuario.setEmail(ob.getEmail());
 		gUsuario.setSenha(ob.getSenha());
 		gUsuario.setDtcriacao(new Date(System.currentTimeMillis()));
-		Gusuario ver = this.gUsuarioRepository.findByNomeAndEmail(gUsuario.getNome(), gUsuario.getEmail());
+		
+		this.valideDataCad(gUsuario, 
+				this.gUsuarioRepository.findByNomeOrEmail(gUsuario.getNome(), 
+				gUsuario.getEmail()));
 		
 		gUsuario = this.gUsuarioRepository.save(gUsuario);
 		
@@ -73,6 +79,26 @@ public class GGPreCadService
 		return gtpUsuario.getId();
 	}
 	
-	
+	private void valideDataCad (Gusuario... gusuario) {
+		
+		if (gusuario[1] != null) {
+			final String strNome = gusuario[0].getNome();
+			final String strEmail = gusuario[0].getEmail();
+			
+			if ((strNome.equals(gusuario[1].getNome()))
+					&& (strEmail.equals(gusuario[1].getEmail()))) {
+				throw new GGizCadMailUserDupException();
+			} else {
+				
+				if (strNome.equals(gusuario[1].getNome())) {
+					throw new GGizCadUserDupException();
+				} else if (strEmail.equals(gusuario[1].getEmail())) {
+					throw new GGizCadMailDupException();
+				}
+				
+			}
+				
+		}
+	}
 
 }

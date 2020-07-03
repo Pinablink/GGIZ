@@ -13,5 +13,5 @@ public interface GGUsuarioRepository
 	extends JpaRepository<Gusuario, Long> {
 
 	public Gusuario findByNome (String nome);
-	public Gusuario findByNomeAndEmail (String nome, String email);
+	public Gusuario findByNomeOrEmail (String nome, String email);
 }

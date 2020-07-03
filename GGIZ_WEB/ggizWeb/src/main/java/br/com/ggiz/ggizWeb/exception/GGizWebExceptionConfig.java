@@ -43,5 +43,35 @@ public class GGizWebExceptionConfig
 		 gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
 		 return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
 	}
+	 
+	 @ExceptionHandler({
+		 GGizCadUserDupException.class
+	 }) 
+	public ResponseEntity<GGResponseMessage> ggizCadUserDupError () {
+		GGResponseMessage gResponseMessage = new GGResponseMessage();
+		gResponseMessage.setMessage(gProperties.getMessage().getErrDupUser());
+		gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
+		return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizCadMailDupException.class
+	 }) 
+	 public ResponseEntity<GGResponseMessage> ggizCadMailDupException () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getErrDupEmail());
+		 gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
+		 return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
+	 }
+	 
+	 @ExceptionHandler({
+		 GGizCadMailUserDupException.class
+	 }) 
+	 public ResponseEntity<GGResponseMessage> ggizCadMailUserDupException () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getErrDupEmailUser());
+		 gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
+		 return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
+	 }
 
 }
