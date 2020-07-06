@@ -33,7 +33,7 @@ func inputDataCad(w http.ResponseWriter, r *http.Request) {
 		} else {
 			cadModel := model.CadModel{}
 			json.Unmarshal(body, &cadModel)
-			IncludeCad(cadModel)
+			includeCad(cadModel)
 			fmt.Println("Dado Cadastrado com sucesso")
 		}
 

@@ -2,31 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
-
-	"github.com/gomodule/redigo/redis"
+	"gextractdata/asmmessage"
 )
-
-/*type cadmoderedis struct {
-	Email        string `redis:"email"`
-	Datainclusao string `redis:"datainclusao"`
-}*/
 
 func main() {
 
-	conn, err := redis.Dial("tcp", "localhost:6379")
+	process, vl := asmmessage.GetMessage()
 
-	if err != nil {
-		log.Fatal(err)
+	if process {
+		fmt.Printf(vl)
 	}
 
-	defer conn.Close()
-
-	email, merr := redis.String(conn.Do("HGET", "iCadDay", "Email"))
-
-	if merr != nil {
-		log.Fatal(merr)
-	}
-
-	fmt.Println(email)
 }

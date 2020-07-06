@@ -10,11 +10,14 @@ import (
 )
 
 var (
-	countCad int = 0
+	countCad        uint16 = 0
+	emailkey        string
+	datainclusaokey string
 )
 
 // IncludeCad Irá incluir os Dados no Redis para posterior consulta
-func IncludeCad(m model.CadModel) {
+func includeCad(m model.CadModel) {
+
 	conn, err := redis.Dial("tcp", "localhost:6379")
 
 	if err != nil {
@@ -23,10 +26,14 @@ func IncludeCad(m model.CadModel) {
 
 	defer conn.Close()
 
-	_, errret := conn.Do("HMSET", "iCadDay:", "Email", m.Email, "Datainclusao", m.Datainclusao)
+	emailkey = fmt.Sprintf("%s%d", "Email", countCad)
+	datainclusaokey = fmt.Sprintf("%s%d", "Datainclusao", countCad)
+
+	_, err = conn.Do("HMSET", "iCadDay", emailkey, m.Email, datainclusaokey, m.Datainclusao)
 	countCad++
-	fmt.Printf("%d", countCad)
-	if errret != nil {
-		log.Fatal(errret)
+
+	if err != nil {
+		log.Fatal(err)
 	}
+
 }
