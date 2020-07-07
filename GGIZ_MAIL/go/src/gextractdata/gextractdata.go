@@ -1,16 +1,16 @@
 package main
 
-import (
+/*import (
 	"fmt"
 	"gextractdata/asmmessage"
-)
+)*/
 
 func main() {
 
-	process, vl := asmmessage.GetMessage()
+	/*process, vl := asmmessage.GetMessage()
 
 	if process {
 		fmt.Printf(vl)
-	}
+	}*/
 
 }

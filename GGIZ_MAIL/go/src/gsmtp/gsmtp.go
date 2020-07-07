@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gextractdata/asmmessage"
 	"gsmtp/mail"
 	"io/ioutil"
 	"log"
@@ -32,13 +33,20 @@ func main() {
 			strServerConf := string(serverBinary)
 			contentServerConf := strings.Split(strServerConf, ",")
 
+			// Por enquanto o sistema de envio de email só vai contemplar o a notificação por
+			// novos cadastros
 			var smtpMail mail.GGServerMail
 			var robotMail mail.GGMail
 			smtpMail.Serversmtp = contentServerConf[0]
 			smtpMail.Pathserver = contentServerConf[1]
-			// Ponto deverá ser modificado. Este conteúdo será proveniente de uma chamada REST em um Serviço Spring Boot
-			robotMail.Config(from, password, "pinablink@hotmail.com", "Novo Envio de Mensagem")
-			robotMail.Send(smtpMail)
+			// Chamada de um cache redis
+			process, msg := asmmessage.GetMessage()
+
+			if process {
+				robotMail.Config(from, password, "pinablink@hotmail.com", msg)
+				robotMail.Send(smtpMail)
+			}
+
 		}
 	}
 

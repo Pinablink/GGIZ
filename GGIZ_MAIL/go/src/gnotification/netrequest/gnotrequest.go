@@ -37,7 +37,7 @@ func inputDataCad(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Dado Cadastrado com sucesso")
 		}
 
-		io.WriteString(w, "Teste")
+		io.WriteString(w, "ggok")
 	}
 }
 

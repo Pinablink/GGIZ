@@ -2,6 +2,7 @@ package asmmessage
 
 import (
 	"fmt"
+	"gutil"
 	"log"
 	"strings"
 
@@ -24,7 +25,9 @@ func GetMessage() (bool, string) {
 
 	defer conn.Close()
 
-	mapcontent, err = redis.StringMap(conn.Do("HGETALL", "iCadDay"))
+	mapcontent, err = redis.StringMap(conn.Do("HGETALL", gutil.GetLastDateKeyHash()))
+	// Para testes antes da implantação
+	// mapcontent, err = redis.StringMap(conn.Do("HGETALL", gutil.GetDateKeyHash()))
 
 	if err != nil {
 		log.Fatal(err)
@@ -49,7 +52,8 @@ func GetMessage() (bool, string) {
 			if strings.EqualFold(keyv, "Email") {
 				fmt.Fprint(builderRef, "Email Informado: ", element, "\n")
 				ckeyHash = append(ckeyHash, key)
-			} else {
+			} else if strings.EqualFold(keyv, "Datainclusao") {
+				ckeyHash = append(ckeyHash, key)
 				if !dtIncluded {
 					dtIncluded = true
 					dtIncRef = element
@@ -57,8 +61,9 @@ func GetMessage() (bool, string) {
 			}
 		}
 
-		fmt.Fprint(builderRef, "Data de Referência: ", dtIncRef, "\n")
-		clearHash()
+		fmt.Fprint(builderRef, "Data de Referencia: ", dtIncRef, "\n")
+		processArrayHash(conn)
+
 		return true, builderStr.String()
 	}
 
@@ -66,11 +71,34 @@ func GetMessage() (bool, string) {
 	return false, strRet
 }
 
-func clearHash() {
-	// Implementar aqui a exclusão dos dados do redis
+func processArrayHash(refConn redis.Conn) {
+	var emailP string
+	var dataIncP string
+	j := len(ckeyHash)
+
+	for i := 0; i < j; i++ {
+		vlTarget := ckeyHash[i]
+
+		if strings.Contains(vlTarget, "Email") {
+			emailP = vlTarget
+		} else if strings.Contains(vlTarget, "Datainclusao") {
+			dataIncP = vlTarget
+			clearHash(emailP, dataIncP, refConn)
+		}
+	}
+
+}
+
+func clearHash(strEmail, strData string, refConn redis.Conn) {
+
+	_, err := refConn.Do("HDEL", gutil.GetDateKeyHash(), strEmail, strData)
+
+	if err != nil {
+		log.Fatal("Ocorreu Erro na Exclusao de Itens do Hash", err)
+	}
 }
 
 func iniMessage(smessage string) string {
-	smessage = "Aviso de Sistema - Cadastro de Usuários\nCadastro(s) realizado(s): "
+	smessage = "Aviso de Sistema - Cadastro de Usuarios\nCadastro(s) realizado(s): "
 	return smessage
 }

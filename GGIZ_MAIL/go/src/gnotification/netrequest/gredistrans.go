@@ -3,6 +3,7 @@ package netrequest
 import (
 	"fmt"
 	"gnotification/model"
+	"gutil"
 	"log"
 
 	// Inclusao de Modulo
@@ -29,7 +30,7 @@ func includeCad(m model.CadModel) {
 	emailkey = fmt.Sprintf("%s%d", "Email", countCad)
 	datainclusaokey = fmt.Sprintf("%s%d", "Datainclusao", countCad)
 
-	_, err = conn.Do("HMSET", "iCadDay", emailkey, m.Email, datainclusaokey, m.Datainclusao)
+	_, err = conn.Do("HMSET", gutil.GetDateKeyHash(), emailkey, m.Email, datainclusaokey, m.Datainclusao)
 	countCad++
 
 	if err != nil {

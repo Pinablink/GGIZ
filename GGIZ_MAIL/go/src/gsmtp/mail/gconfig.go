@@ -33,7 +33,7 @@ func (ggmail *GGMail) inputDest(vDest string) {
 
 func (ggmail *GGMail) inputMessage(vMessage string) {
 	var refMessage gMessage
-	refMessage.subject = "Usuarios Cadastrados"
+	refMessage.subject = "[GGIZ Broadcast]Usuarios Cadastrados"
 	refMessage.message = vMessage
 	ggmail.cMessage = refMessage
 	isValidMessageMail = true
