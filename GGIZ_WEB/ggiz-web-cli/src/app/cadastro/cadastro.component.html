@@ -51,9 +51,9 @@
       </div>
       <div class="modal-body">
         <p>
-          Informe um Nome de Usuário e em seguida um Email válido para que possamos posteriormente entrar em contato. Utilize caracteres minusculos
-          e o range de a-z. Esse é um Pré-Cadastro e assim que o Sistema estiver com a Dashboard operacional você
-          poderá editar suas informações.
+          Informe um Nome de Usuário e em seguida um Email válido para que possamos posteriormente entrar em contato.
+          Para o Pré-Cadastro do seu usuário. Utilize apenas caracteres minusculos de a a z, sem números e outros simbolos.
+          Lembre-se, este é um Pré-Cadastro, futuramente você poderá alterar o nome de usuário e o email.
         </p>
       </div>
     </ng-template>
@@ -74,10 +74,9 @@
     </ng-template>
 
     <div *ngIf="avisoSucess" class="alert alert-success mt-5" role="alert">
-      <p>Obrigado por efetuar o Cadastro na Plataforma Experimental GGIZ. Você deve ter notado que não informou senha.
+      <p>Obrigado por efetuar o Cadastro na Plataforma Experimental GGIZ! Você deve ter notado que não informou senha.
         É isso mesmo, por se tratar de um Pré-Cadastro essa ação não é necessária. O sistema já vai gerar uma senha de
-        acesso para você.E quando você for logar para aproveitar a plataforma, você será avisado por email, com a senha
-        de acesso e o assunto especifico!! Obrigado!!
+        acesso para você. Com seu email cadastrado enviaremos uma mensagem assim que for possivel acessar o sistema.
       </p>
       <hr>
       <a (click)= "returnCad()" href="#" class="btn btn-google btn-user btn-block">
@@ -122,20 +121,20 @@
                     <button (click)="efetuarCadastro(template)" class="btn btn-primary btn-user btn-block">
                         Pré-Cadastro..
                     </button>
-                    <hr>
-                    <button class="btn btn-google btn-user btn-block">
+                    <!-- <hr>
+                    <button (click) = "showAbout()" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Saiba um Pouco Mais!
-                    </button>
+                    </button> -->
                     </ng-template>
                     <ng-template #issendcad>
                     <button class="btn btn-primary btn-user btn-block">
                          <span class="spinner-border spinner-border-sm"></span>
                          Enviando Pré-Cadastro..
                     </button>
-                    <hr>
-                    <button  class="btn btn-google btn-user btn-block">
+                    <!-- <hr>
+                    <button class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Saiba um Pouco Mais!
-                    </button>
+                    </button> -->
                     </ng-template>
                   </form>
                 </div>

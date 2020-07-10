@@ -27,6 +27,7 @@ export class CadastroComponent implements OnInit {
   cadUsuario: boolean;
   avisoError: boolean;
   avisoSucess: boolean;
+  about: boolean;
 
   constructor(private preCadService: PrecadastroService, private modalService: BsModalService) { }
   // constructor(private preCadService: PrecadastroService, private router: Router, private modalService: BsModalService) { }
@@ -112,6 +113,7 @@ export class CadastroComponent implements OnInit {
         break;
        }
     }
+
     return ret;
   }
 
@@ -125,6 +127,11 @@ export class CadastroComponent implements OnInit {
     this.cadUsuario = true;
     this.avisoError = false;
     this.avisoSucess = false;
+  }
+
+  public showAbout(): void {
+    this.cadUsuario = false;
+    this.about = true;
   }
 
 
