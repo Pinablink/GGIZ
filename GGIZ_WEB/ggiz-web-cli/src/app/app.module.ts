@@ -8,11 +8,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
+import { GgizAboutComponent } from './sobre/ggiz-about/ggiz-about.component';
+import { GgizNoticiasComponent } from './home/ggiz-noticias/ggiz-noticias.component';
+import { GgizTecComponent } from './info/ggiz-tec/ggiz-tec.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroComponent
+    CadastroComponent,
+    GgizMainComponent,
+    GgizAboutComponent,
+    GgizNoticiasComponent,
+    GgizTecComponent
   ],
   imports: [
     BrowserModule,

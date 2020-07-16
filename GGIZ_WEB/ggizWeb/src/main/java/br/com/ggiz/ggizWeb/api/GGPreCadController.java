@@ -29,7 +29,7 @@ import br.com.ggiz.ggizWeb.util.GGTechEnvironment;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://191.252.103.83:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/ggiz/api/v1/pre/cad")
 public class GGPreCadController 
 	implements GGController {

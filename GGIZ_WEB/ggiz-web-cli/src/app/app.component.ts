@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
 
 @Component({
   selector: 'ggiz-root',
