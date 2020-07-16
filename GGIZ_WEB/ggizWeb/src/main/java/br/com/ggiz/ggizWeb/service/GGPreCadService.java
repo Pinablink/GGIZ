@@ -101,4 +101,8 @@ public class GGPreCadService
 		}
 	}
 
+	@Override
+	public Object execute () {
+		return null;
+	}
 }

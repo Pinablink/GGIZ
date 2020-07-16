@@ -9,4 +9,5 @@ import javassist.NotFoundException;
  */
 public interface GGService {
 	public Object execute (Object obReturn);
+	public Object execute ();
 }

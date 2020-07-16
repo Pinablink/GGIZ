@@ -33,7 +33,6 @@ public class GGizWebExceptionConfig
 		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
 	}
 	 
-	 
 	 @ExceptionHandler({
 		 GGizCadUserException.class
 	 })
@@ -73,5 +72,15 @@ public class GGizWebExceptionConfig
 		 gResponseMessage.setStatusCode(HttpStatus.LOCKED.value());
 		 return ResponseEntity.status(HttpStatus.LOCKED).body(gResponseMessage);
 	 }
+	 
+	 @ExceptionHandler({
+		 GGizNewsNotFoundException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizNewsNotFound () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getNewsNotFound());
+		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
+	}
 
 }

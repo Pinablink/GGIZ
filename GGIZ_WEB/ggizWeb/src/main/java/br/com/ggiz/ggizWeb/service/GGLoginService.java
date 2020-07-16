@@ -44,4 +44,8 @@ public class GGLoginService
 		return gUsuarioDTO;
 	}
 	
+	@Override
+	public Object execute () {
+		return null;
+	}
 }

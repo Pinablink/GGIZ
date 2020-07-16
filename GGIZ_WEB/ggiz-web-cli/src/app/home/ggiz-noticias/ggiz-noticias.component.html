@@ -1,18 +1,28 @@
 <div class="container-fluid">
-   <div class="row">
+
+  <div *ngIf="notContent" class="alert alert-warning" role="alert">
+    Estamos no momento sem conteúdo para apresentar nessa sessão. Mas volte em outro momento estamos trabalhando para gerar conteúdo!
+  </div>
+
+ <div *ngIf="errServer" class="alert alert-danger" role="alert">
+    Ops! Não gostamos quando isso acontece! Mas ocorreu um problema no servidor e logo voltaremos ao normal!
+  </div>
+
+
+  <div *ngIf="viewNews" class="row">
       <div class="col-12">
-        <h1 style="font-weight:bold;color:white">Novidades sobre o desenvolvimento</h1>
+        <h1 style="font-weight:bold;color:white">Novidades sobre a plataforma</h1>
       </div>
     </div>
     <hr>
     <div class="row">
-     <div class="ml-2 mb-3">
+     <div *ngFor="let ggnews of pNews" class="ml-2 mb-3">
        <div class="card" style="width: 18rem;">
          <img src="assets/img/topCardNews.png" class="card-img-top" alt="...">
          <div class="card-body">
-           <small>Data Publicação: 15/07/2020</small>
+           <small>Data Publicação: {{ggnews.dtcriacao}}</small>
              <p class="card-text">
-               Agora um Canal Exclusivo para as noticias do Desenvolvimento do GGIZ
+               {{ggnews.descricao}}
              </p>
          </div>
          <div class="card-body">
