@@ -1,6 +1,5 @@
 package br.com.ggiz.ggizWeb.service.contract;
 
-import javassist.NotFoundException;
 
 /**
  * 
@@ -8,6 +7,6 @@ import javassist.NotFoundException;
  *
  */
 public interface GGService {
-	public Object execute (Object obReturn);
-	public Object execute ();
+	public Object executeFind (Object ob);
+	public Object executeFindAll ();
 }

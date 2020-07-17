@@ -12,7 +12,12 @@ import java.util.Date;
 public class GGNoticiaResponseDTO 
 		 implements Serializable {
 	
+	 /**
+	 * 
+	 */
+	 private static final long serialVersionUID = -3308396211765200233L;
 	 private Long id; 
+	 private String titulo;
 	 private String descricao;
 	 private String dtcriacao;
 	 
@@ -34,10 +39,19 @@ public class GGNoticiaResponseDTO
 	 public void setDtcriacao(String dtcriacao) {
 		this.dtcriacao = dtcriacao;
 	 }
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	@Override
+	public String toString() {
+		return "GGNoticiaResponseDTO [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", dtcriacao="
+				+ dtcriacao + "]";
+	}
 	 
-	 @Override
- 	 public String toString() {
-		return "GGNoticiaResponseDTO [id=" + id + ", descricao=" + descricao + ", dtcriacao=" + dtcriacao + "]";
-	 }
+	
 	 
 }

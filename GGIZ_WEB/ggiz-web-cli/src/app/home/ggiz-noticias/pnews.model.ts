@@ -1,6 +1,7 @@
 export  class PNewsModel {
 
-   id: number;
-   descricao: string;
-   dtcriacao: string;
+   public id: number;
+   public titulo: string;
+   public descricao: string;
+   public dtcriacao: string;
 }

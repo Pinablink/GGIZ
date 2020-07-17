@@ -1,4 +1,4 @@
-package br.com.ggiz.ggizWeb.exception;
+package br.com.ggiz.ggizWeb.util;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.ggiz.ggizWeb.util.GGizWebProperties;
-import br.com.ggiz.ggizWeb.util.GGResponseMessage;
+import br.com.ggiz.ggizWeb.exception.GGizCadMailDupException;
+import br.com.ggiz.ggizWeb.exception.GGizCadMailUserDupException;
+import br.com.ggiz.ggizWeb.exception.GGizCadUserDupException;
+import br.com.ggiz.ggizWeb.exception.GGizCadUserException;
+import br.com.ggiz.ggizWeb.exception.GGizNewsLerNotFoundException;
+import br.com.ggiz.ggizWeb.exception.GGizNewsNotFoundException;
+import br.com.ggiz.ggizWeb.exception.GGizWebNotFoundUser;
 
 /**
  * 
@@ -79,6 +84,16 @@ public class GGizWebExceptionConfig
 	public ResponseEntity<GGResponseMessage> ggizNewsNotFound () {
 		 GGResponseMessage gResponseMessage = new GGResponseMessage();
 		 gResponseMessage.setMessage(gProperties.getMessage().getNewsNotFound());
+		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizNewsLerNotFoundException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizNewsLerNotFound () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getNewsLerNotFound());
 		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
 		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
 	}

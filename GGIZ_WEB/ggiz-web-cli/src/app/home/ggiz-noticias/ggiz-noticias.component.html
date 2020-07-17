@@ -16,7 +16,7 @@
     </div>
     <hr>
     <div class="row">
-     <div *ngFor="let ggnews of pNews" class="ml-2 mb-3">
+     <div *ngFor="let ggnews of pNews" class="ml-2 mb-2">
        <div class="card" style="width: 18rem;">
          <img src="assets/img/topCardNews.png" class="card-img-top" alt="...">
          <div class="card-body">
@@ -26,7 +26,7 @@
              </p>
          </div>
          <div class="card-body">
-           <a href="#" class="card-link">Quero Ler Mais!</a>
+          <button (click)="showNews(ggnews.id,ggnews.titulo)" type="button" class="btn btn-primary">Quero Ler mais!</button>
          </div>
        </div>
      </div>

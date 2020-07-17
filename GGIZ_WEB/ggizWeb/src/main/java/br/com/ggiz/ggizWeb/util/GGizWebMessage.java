@@ -13,6 +13,7 @@ public class GGizWebMessage {
 	private String errDupEmail;
 	private String errDupEmailUser;
 	private String newsNotFound;
+	private String newsLerNotFound;
 			
 	public String getUserNotFound() {
 		return userNotFound;
@@ -61,6 +62,13 @@ public class GGizWebMessage {
 	public void setNewsNotFound(String newsNotFound) {
 		this.newsNotFound = newsNotFound;
 	}
-	
+
+	public String getNewsLerNotFound() {
+		return newsLerNotFound;
+	}
+
+	public void setNewsLerNotFound(String newsLerNotFound) {
+		this.newsLerNotFound = newsLerNotFound;
+	}
 	
 }

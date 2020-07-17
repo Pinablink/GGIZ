@@ -26,13 +26,13 @@ public class GGNoticiasService
 	private GGNoticiasRepository repository;
 	
 	@Override
-	public Object execute () {
+	public Object executeFindAll () {
 		List<Gnoticia> list =  this.repository.findAll();
 		return convert(list);
 	}
 	
 	@Override
-	public Object execute(Object obReturn) {
+	public Object executeFind(Object ob) {
 		return null;
 	}
 	
@@ -50,6 +50,7 @@ public class GGNoticiasService
 					new GGNoticiaResponseDTO();
 			
 			responseDTO.setId(gnoticia.getId());
+			responseDTO.setTitulo(gnoticia.getTitulo());
 			responseDTO.setDescricao(gnoticia.getDescricao());
 			responseDTO.setDtcriacao(GGizDate.getDateFormatStr(gnoticia.getDtcriacao()));
 			

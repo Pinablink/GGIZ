@@ -36,18 +36,18 @@ public class GGPreCadService
 	private GGUsuarioRepository gUsuarioRepository;
 	
 	@Override
-	public Object execute(Object obReturn) {
+	public Object executeFind(Object ob) {
 		
-		GGUsuarioRequestCreateDTO ob = 
-				(GGUsuarioRequestCreateDTO)obReturn;
+		GGUsuarioRequestCreateDTO iob = 
+				(GGUsuarioRequestCreateDTO)ob;
 		
 		Long idTpUsuario = this.getDefaultTpUser();
 		
 		Gusuario gUsuario = new Gusuario();
 		gUsuario.setId_gtpusuario(idTpUsuario);
-		gUsuario.setNome(ob.getUsuario());
-		gUsuario.setEmail(ob.getEmail());
-		gUsuario.setSenha(ob.getSenha());
+		gUsuario.setNome(iob.getUsuario());
+		gUsuario.setEmail(iob.getEmail());
+		gUsuario.setSenha(iob.getSenha());
 		gUsuario.setDtcriacao(new Date(System.currentTimeMillis()));
 		
 		this.valideDataCad(gUsuario, 
@@ -102,7 +102,7 @@ public class GGPreCadService
 	}
 
 	@Override
-	public Object execute () {
+	public Object executeFindAll () {
 		return null;
 	}
 }

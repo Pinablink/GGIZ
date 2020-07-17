@@ -29,7 +29,7 @@ import br.com.ggiz.ggizWeb.util.GGTechEnvironment;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/ggiz/api/v1/pre/cad")
 public class GGPreCadController 
 	implements GGController {
@@ -53,7 +53,7 @@ public class GGPreCadController
 			userCreate.setSenha(this.generatePassword(charSeq));
 		}
 		
-		this.ref = (Gusuario)gPreCadService.execute(userCreate);
+		this.ref = (Gusuario)gPreCadService.executeFind(userCreate);
 		
 		GGResponseMessage gRespmsg = new GGResponseMessage();
 		gRespmsg.setMessage("SYS-SUCESS");

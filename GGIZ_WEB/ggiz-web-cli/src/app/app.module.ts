@@ -12,6 +12,7 @@ import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
 import { GgizAboutComponent } from './sobre/ggiz-about/ggiz-about.component';
 import { GgizNoticiasComponent } from './home/ggiz-noticias/ggiz-noticias.component';
 import { GgizTecComponent } from './info/ggiz-tec/ggiz-tec.component';
+import { GgizNewsLerComponent } from './noticia/ggiz-news-ler/ggiz-news-ler.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GgizTecComponent } from './info/ggiz-tec/ggiz-tec.component';
     GgizMainComponent,
     GgizAboutComponent,
     GgizNoticiasComponent,
-    GgizTecComponent
+    GgizTecComponent,
+    GgizNewsLerComponent
   ],
   imports: [
     BrowserModule,

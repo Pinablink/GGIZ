@@ -26,9 +26,9 @@ public class GGLoginService
 	
 	
 	@Override
-	public Object execute (Object obReturn)  {
+	public Object executeFind (Object ob)  {
 		
-		GGUsuarioRequestLoginDTO glogin = (GGUsuarioRequestLoginDTO)obReturn;
+		GGUsuarioRequestLoginDTO glogin = (GGUsuarioRequestLoginDTO)ob;
 		
 		String strName = glogin.getUsuarioLogin();
 		Gusuario gUsuario = repository.findByNome(strName);
@@ -45,7 +45,7 @@ public class GGLoginService
 	}
 	
 	@Override
-	public Object execute () {
+	public Object executeFindAll () {
 		return null;
 	}
 }

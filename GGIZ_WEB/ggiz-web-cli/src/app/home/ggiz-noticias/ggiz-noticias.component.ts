@@ -1,6 +1,7 @@
 import { GgizPnewsService } from './../../service/ggiz-pnews.service';
 import { Component, OnInit } from '@angular/core';
 import { PNewsModel } from './pnews.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ggiz-ggiz-noticias',
@@ -14,7 +15,7 @@ export class GgizNoticiasComponent implements OnInit {
   viewNews: boolean;
   errServer: boolean;
 
-  constructor(private service: GgizPnewsService) { }
+  constructor(private service: GgizPnewsService, private route: Router) { }
 
   ngOnInit(): void {
     this.service.getNews().subscribe( (pNews: PNewsModel[]) =>
@@ -48,5 +49,9 @@ export class GgizNoticiasComponent implements OnInit {
      }
     );
 
+  }
+
+  showNews(id: string, titulo: string): void {
+    this.route.navigate(['noticia', id, titulo]);
   }
 }

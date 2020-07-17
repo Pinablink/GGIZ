@@ -28,7 +28,7 @@ public class GGLoginValidController {
 	@PostMapping
 	public ResponseEntity loginValid (@RequestBody GGUsuarioRequestLoginDTO usLogin) {
 		
-		GGUsuarioResponseLoginDTO obRet = (GGUsuarioResponseLoginDTO)this.gLoginService.execute(usLogin);
+		GGUsuarioResponseLoginDTO obRet = (GGUsuarioResponseLoginDTO)this.gLoginService.executeFind(usLogin);
 		
 		return ResponseEntity.ok(obRet);
 	}
