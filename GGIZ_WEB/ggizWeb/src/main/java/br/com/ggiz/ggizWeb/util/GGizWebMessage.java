@@ -14,6 +14,7 @@ public class GGizWebMessage {
 	private String errDupEmailUser;
 	private String newsNotFound;
 	private String newsLerNotFound;
+	private String broadcastRecpNotFound;
 			
 	public String getUserNotFound() {
 		return userNotFound;
@@ -70,5 +71,14 @@ public class GGizWebMessage {
 	public void setNewsLerNotFound(String newsLerNotFound) {
 		this.newsLerNotFound = newsLerNotFound;
 	}
+
+	public String getBroadcastRecpNotFound() {
+		return broadcastRecpNotFound;
+	}
+
+	public void setBroadcastRecpNotFound(String broadcastRecpNotFound) {
+		this.broadcastRecpNotFound = broadcastRecpNotFound;
+	}
+	
 	
 }

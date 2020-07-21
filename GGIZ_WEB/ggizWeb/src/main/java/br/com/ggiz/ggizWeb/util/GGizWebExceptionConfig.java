@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import br.com.ggiz.ggizWeb.exception.GGizBroadcastRecepNotFoundException;
 import br.com.ggiz.ggizWeb.exception.GGizCadMailDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadMailUserDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadUserDupException;
@@ -94,6 +95,16 @@ public class GGizWebExceptionConfig
 	public ResponseEntity<GGResponseMessage> ggizNewsLerNotFound () {
 		 GGResponseMessage gResponseMessage = new GGResponseMessage();
 		 gResponseMessage.setMessage(gProperties.getMessage().getNewsLerNotFound());
+		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizBroadcastRecepNotFoundException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizBroadcastRecepNotFound () {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getBroadcastRecpNotFound());
 		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
 		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
 	}

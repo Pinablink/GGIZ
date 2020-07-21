@@ -1,6 +1,4 @@
- <!-- <div class="container"> -->
-
-  <ng-template #cadDupTemplate>
+<ng-template #cadDupTemplate>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Aviso</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRefCadDupUser.hide()">
@@ -78,20 +76,12 @@
         É isso mesmo, por se tratar de um Pré-Cadastro essa ação não é necessária. O sistema já vai gerar uma senha de
         acesso para você. Com seu email cadastrado enviaremos uma mensagem assim que for possivel acessar o sistema.
       </p>
-      <hr>
-      <a (click)= "returnCad()" href="#" class="btn btn-google btn-user btn-block">
-        <i class="fab fa-google fa-fw"></i> Voltar para a Tela de Pré-Cadastro
-      </a>
     </div>
 
     <div *ngIf="avisoError" class="alert alert-danger mt-5" role="alert">
         <p>Essa não!!! Algo ocorreu e o servidor não nos respondeu! Provavelmente esteja ocorrendo alguma manutenção no ambiente
           e logo você poderá solicitar seu Pré-Cadastro conosco. Lembre-se é muito importante que você faça parte dessa experiência!
         </p>
-      <hr>
-      <a (click)= "returnCad()" href="#" class="btn btn-google btn-user btn-block">
-        <i class="fab fa-google fa-fw"></i> Voltar para a Tela de Pré-Cadastro
-      </a>
     </div>
 
     <!-- Outer Row -->

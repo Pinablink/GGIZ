@@ -11,6 +11,12 @@ export class GgizMainComponent implements OnInit {
   constructor(private mRoute: Router) { }
 
   ngOnInit(): void {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 992) {
+      // Implementar aqui...
+    }
+
   }
 
   showPreCad(): void {

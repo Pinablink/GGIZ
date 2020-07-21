@@ -1,7 +1,6 @@
 package br.com.ggiz.ggizWeb.domain.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * 
