@@ -14,12 +14,12 @@ export class GgizPnewsService {
   constructor(private http: HttpClient) { }
 
   public getNews(): Observable<PNewsModel[]> {
-      return this.http.get<PNewsModel[]>('http://191.252.103.83:8080/ggiz/api/v1/noticias').
+      return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias').
       pipe(catchError(this.handleError));
   }
 
   public showNews(id: string): Observable<GGizNewsLerModel> {
-    return this.http.get<GGizNewsLerModel>('http://191.252.103.83:8080/ggiz/api/v1/noticia/ler/' + id)
+    return this.http.get<GGizNewsLerModel>('http://localhost:8080/ggiz/api/v1/noticia/ler/' + id)
     .pipe(catchError(this.handleError));
   }
 
