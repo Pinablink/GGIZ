@@ -15,6 +15,7 @@ public class GGizWebMessage {
 	private String newsNotFound;
 	private String newsLerNotFound;
 	private String broadcastRecpNotFound;
+	private String tokenunknown;
 			
 	public String getUserNotFound() {
 		return userNotFound;
@@ -78,6 +79,14 @@ public class GGizWebMessage {
 
 	public void setBroadcastRecpNotFound(String broadcastRecpNotFound) {
 		this.broadcastRecpNotFound = broadcastRecpNotFound;
+	}
+
+	public String getTokenunknown() {
+		return tokenunknown;
+	}
+
+	public void setTokenunknown(String tokenunknown) {
+		this.tokenunknown = tokenunknown;
 	}
 	
 	

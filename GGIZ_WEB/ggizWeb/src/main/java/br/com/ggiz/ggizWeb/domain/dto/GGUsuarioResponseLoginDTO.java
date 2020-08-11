@@ -11,6 +11,10 @@ public class GGUsuarioResponseLoginDTO
     implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7186671745444688870L;
 	private Long     id;
 	private String usuario;
 	private String   senha;

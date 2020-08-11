@@ -15,6 +15,7 @@ import br.com.ggiz.ggizWeb.exception.GGizCadUserDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadUserException;
 import br.com.ggiz.ggizWeb.exception.GGizNewsLerNotFoundException;
 import br.com.ggiz.ggizWeb.exception.GGizNewsNotFoundException;
+import br.com.ggiz.ggizWeb.exception.GGizUnknownTokenException;
 import br.com.ggiz.ggizWeb.exception.GGizWebNotFoundUser;
 
 /**
@@ -107,6 +108,16 @@ public class GGizWebExceptionConfig
 		 gResponseMessage.setMessage(gProperties.getMessage().getBroadcastRecpNotFound());
 		 gResponseMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
 		 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizUnknownTokenException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizUnknownToken() {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getTokenunknown());
+		 gResponseMessage.setStatusCode(HttpStatus.FORBIDDEN.value());
+		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(gResponseMessage);
 	}
 
 }

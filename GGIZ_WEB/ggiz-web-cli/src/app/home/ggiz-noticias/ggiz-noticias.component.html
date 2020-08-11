@@ -1,13 +1,16 @@
 <div class="container-fluid">
 
-  <div *ngIf="notContent" class="alert alert-warning" role="alert">
+  <div *ngIf="notContent" class="alert alert-warning mt-5" role="alert">
     Estamos no momento sem conteúdo para apresentar nessa sessão. Mas volte em outro momento estamos trabalhando para gerar conteúdo!
   </div>
 
- <div *ngIf="errServer" class="alert alert-danger" role="alert">
+ <div *ngIf="errServer" class="alert alert-danger mt-5" role="alert">
     Ops! Não gostamos quando isso acontece! Mas ocorreu um problema no servidor e logo voltaremos ao normal!
   </div>
 
+  <div *ngIf="errServerToken" class="alert alert-danger mt-5" role="alert">
+    Essa não!! Ocorreu um erro de validação de Token no Servidor. Vamos verificar esse problema! Retorne mais tarde!
+  </div>
 
   <div *ngIf="viewNews" class="row">
       <div class="col-12">

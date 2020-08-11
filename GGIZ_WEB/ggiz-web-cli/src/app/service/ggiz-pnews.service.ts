@@ -11,15 +11,23 @@ import { throwError } from 'rxjs';
 })
 export class GgizPnewsService {
 
+
   constructor(private http: HttpClient) { }
 
   public getNews(): Observable<PNewsModel[]> {
-      return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias').
+
+    const configHeader = {headers:  {
+      token: ''}
+  };
+
+    //return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias', configHeader).
+    return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
       pipe(catchError(this.handleError));
   }
 
   public showNews(id: string): Observable<GGizNewsLerModel> {
-    return this.http.get<GGizNewsLerModel>('http://localhost:8080/ggiz/api/v1/noticia/ler/' + id)
+    //return this.http.get<GGizNewsLerModel>('http://localhost:8080/ggiz/api/v1/noticia/ler/' + id)
+    return this.http.get<GGizNewsLerModel>('http://localhost:80/service/ggiz/noticia/' + id)
     .pipe(catchError(this.handleError));
   }
 

@@ -19,7 +19,7 @@ export class GgizMainComponent implements OnInit {
 
   }
 
-  showPreCad(): void {
-    this.mRoute.navigate(['preCad']);
-  }
+ // showPreCad(): void {
+   // this.mRoute.navigate(['preCad']);
+ // }
 }
