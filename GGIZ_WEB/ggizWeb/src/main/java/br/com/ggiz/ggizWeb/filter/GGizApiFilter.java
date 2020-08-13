@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author Weber Alves dos Santos (Pinablink)
  *
  */
-@Component
+//@Component
 public class GGizApiFilter implements Filter {
 
 	private static final String  STR_GET_TOKEN_ATTR = "GET_TOKEN";

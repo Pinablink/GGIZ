@@ -1,10 +1,12 @@
-import { GGizTokenModel } from './../../global/ggiz-token.model';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { GGizTokenModel } from './../../model/ggiz-token.model';
 import { GgizPnewsService } from './../../service/ggiz-pnews.service';
 import { GgizTokenService } from './../../service/ggiz-token.service';
 import { GGizMain } from './../../global/ggiz-main';
-import { Component, OnInit } from '@angular/core';
-import { PNewsModel } from './pnews.model';
-import { Router } from '@angular/router';
+import { PNewsModel } from './../../model/pnews.model';
+
 
 @Component({
   selector: 'ggiz-ggiz-noticias',
@@ -19,15 +21,14 @@ export class GgizNoticiasComponent  extends GGizMain implements OnInit {
   public errServer: boolean;
   public errServerToken: boolean;
 
-  /* constructor(private service: GgizPnewsService,
-    private serviceToken: GgizTokenService, private route: Router) {} */
+   constructor(private service: GgizPnewsService, private route: Router) {super(); }
 
-  constructor(private route: Router, private serviceToken: GgizTokenService){
+  /*constructor(private route: Router, private serviceToken: GgizTokenService){
     super();
-  }
+  }*/
 
   public ngOnInit(): void {
-    this.serviceToken.getToken().subscribe((ggizToken: GGizTokenModel) =>
+    /*this.serviceToken.getToken().subscribe((ggizToken: GGizTokenModel) =>
     {
        this.ggizToken = ggizToken;
        alert('Token Obtido ' + this.ggizToken.token);
@@ -38,8 +39,8 @@ export class GgizNoticiasComponent  extends GGizMain implements OnInit {
           console.log('Teste de obtencao de token... Erro Ocorrido');
         }
       }
-    );
-   /* this.service.getNews().subscribe( (pNews: PNewsModel[]) =>
+    );*/
+    this.service.getNews().subscribe( (pNews: PNewsModel[]) =>
      {
        this.pNews = pNews;
 
@@ -73,7 +74,7 @@ export class GgizNoticiasComponent  extends GGizMain implements OnInit {
       }
 
      }
-    );*/
+    );
 
   }
 

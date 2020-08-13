@@ -8,7 +8,8 @@ import br.com.ggiz.ggizWeb.repository.entity.Gusersysenv;
  * @author Weber Alves dos Santos (Pinablink)
  *
  */
-public interface GGUsersysenv 
+public interface GGUsersysenvRepository 
 	extends JpaRepository<Gusersysenv, Long> {
 
+	public Gusersysenv findByUsersys(String usersys);
 }

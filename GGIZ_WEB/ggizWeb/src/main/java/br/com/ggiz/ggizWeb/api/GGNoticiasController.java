@@ -27,6 +27,7 @@ import br.com.ggiz.ggizWeb.service.contract.GGService;
  *
  */
 @RestController
+@CrossOrigin(origins = "*") // Retirar no código oficial
 @RequestMapping("/ggiz/api/v1/noticias")
 public class GGNoticiasController {
 
@@ -35,16 +36,16 @@ public class GGNoticiasController {
 	private GGService service;
 	
 	@GetMapping
-	public ResponseEntity<Object> getNews (@RequestHeader Map<String, String> headers,
-			@RequestAttribute(GGizApiFilter.STR_TOKEN_UNKNOWN_ATTR) boolean tokenOk) {
+	public ResponseEntity<Object> getNews (@RequestHeader Map<String, String> headers/*,
+			@RequestAttribute(GGizApiFilter.STR_TOKEN_UNKNOWN_ATTR) boolean tokenOk*/) {
 		
-		if (tokenOk) {
+		//if (tokenOk) {
 			List<GGNoticiaResponseDTO> listRet = 
 					(List<GGNoticiaResponseDTO>)service.executeFindAll();
 			return new ResponseEntity<Object>(listRet, HttpStatus.OK);
-		} else {
-			throw new GGizUnknownTokenException();
-		}
+		//} else {
+		//	throw new GGizUnknownTokenException();
+		//}
 	}
 	
 	

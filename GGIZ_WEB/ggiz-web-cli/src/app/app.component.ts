@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'ggiz-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
+  ngOnInit(): void {
+
+    //alert('oi');
+  }
 
 }

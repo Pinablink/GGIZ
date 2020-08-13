@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PNewsModel } from './../home/ggiz-noticias/pnews.model';
-import { GGizNewsLerModel } from './../noticia/ggiz-news-ler/ggiz-news-ler-model';
+import { PNewsModel } from './../model/pnews.model';
+import { GGizNewsLerModel } from './../model/ggiz-news-ler-model';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
@@ -20,8 +20,8 @@ export class GgizPnewsService {
       token: ''}
   };
 
-    //return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias', configHeader).
-    return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
+    return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias').
+    //return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
       pipe(catchError(this.handleError));
   }
 

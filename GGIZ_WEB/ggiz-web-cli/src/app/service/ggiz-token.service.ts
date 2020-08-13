@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GGizTokenModel } from './../global/ggiz-token.model';
+import { GGizTokenModel } from './../model/ggiz-token.model';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';

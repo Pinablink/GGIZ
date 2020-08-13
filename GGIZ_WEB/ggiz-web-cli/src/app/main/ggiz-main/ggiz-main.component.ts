@@ -11,6 +11,8 @@ export class GgizMainComponent implements OnInit {
   constructor(private mRoute: Router) { }
 
   ngOnInit(): void {
+
+    this.mRoute.navigate(['noticias']);
     const windowWidth = window.innerWidth;
 
     if (windowWidth < 992) {

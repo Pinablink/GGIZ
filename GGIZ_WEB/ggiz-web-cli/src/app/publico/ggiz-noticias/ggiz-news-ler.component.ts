@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GgizPnewsService } from './../../service/ggiz-pnews.service';
-import { GGizNewsLerModel } from './../ggiz-news-ler/ggiz-news-ler-model';
+import { GGizNewsLerModel } from './../../model/ggiz-news-ler-model';
 
 @Component({
   selector: 'ggiz-ggiz-news-ler',

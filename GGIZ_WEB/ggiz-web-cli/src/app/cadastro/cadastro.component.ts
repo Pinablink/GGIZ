@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { CadastroModel } from './cadastro.model';
-import { PrecadastroService } from './../service/precadastro.service';
+//import { PrecadastroService } from './../service/precadastro.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ResponseMessageModel } from '../response.message.model';
+import { ResponseMessageModel } from './../model/response.message.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 
@@ -29,8 +29,9 @@ export class CadastroComponent implements OnInit {
   avisoSucess: boolean;
   about: boolean;
 
-  constructor(private preCadService: PrecadastroService, private modalService: BsModalService) { }
+  //constructor(private preCadService: PrecadastroService, private modalService: BsModalService) { }
   // constructor(private preCadService: PrecadastroService, private router: Router, private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.cadUsuario = true;
@@ -39,7 +40,7 @@ export class CadastroComponent implements OnInit {
     this.avisoSucess = false;
   }
 
-  efetuarCadastro(template: TemplateRef<any>): void {
+  /*efetuarCadastro(template: TemplateRef<any>): void {
     const strUsuario = this.cadastro.usuario;
     const strEmail   = this.cadastro.email;
     const strMsgERR  = 'ERR-CAD-USER';
@@ -133,6 +134,6 @@ export class CadastroComponent implements OnInit {
     this.cadUsuario = false;
     this.about = true;
   }
-
+*/
 
 }

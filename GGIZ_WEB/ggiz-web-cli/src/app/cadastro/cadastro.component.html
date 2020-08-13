@@ -108,9 +108,12 @@
                     </div>
                     <div *ngIf="sendCad; then issendcad; else notsendcad"></div>
                     <ng-template #notsendcad>
-                    <button (click)="efetuarCadastro(template)" class="btn btn-primary btn-user btn-block">
+                    <!-- <button (click)="efetuarCadastro(template)" class="btn btn-primary btn-user btn-block">
                         Pré-Cadastro..
-                    </button>
+                    </button> -->
+                    <button class="btn btn-primary btn-user btn-block">
+                      Pré-Cadastro..
+                  </button>
                     <!-- <hr>
                     <button (click) = "showAbout()" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Saiba um Pouco Mais!

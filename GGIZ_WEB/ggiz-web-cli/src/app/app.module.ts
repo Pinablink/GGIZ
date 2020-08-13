@@ -1,38 +1,39 @@
-import { PrecadastroService } from './service/precadastro.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
-import { GgizAboutComponent } from './sobre/ggiz-about/ggiz-about.component';
-import { GgizNoticiasComponent } from './home/ggiz-noticias/ggiz-noticias.component';
-import { GgizTecComponent } from './info/ggiz-tec/ggiz-tec.component';
-import { GgizNewsLerComponent } from './noticia/ggiz-news-ler/ggiz-news-ler.component';
+//import { GgizPublicoModule } from './ggiz-publico/ggiz-publico.module';
+import { GgizSobreModule } from './publico/ggiz-sobre/ggiz-sobre.module';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PrecadastroService } from './../app/service/precadastro.service';
+import { GgizPnewsService } from './service/ggiz-pnews.service';
+import { GgizInfoModule } from './publico/ggiz-info/ggiz-info.module';
+import { GgizNoticiasModule } from './publico/ggiz-noticias/ggiz-noticias.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroComponent,
-    GgizMainComponent,
-    GgizAboutComponent,
-    GgizNoticiasComponent,
-    GgizTecComponent,
-    GgizNewsLerComponent
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    GgizSobreModule,
     HttpClientModule,
     FormsModule,
     ModalModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    GgizInfoModule,
+    GgizNoticiasModule
   ],
-  providers: [HttpClientModule, PrecadastroService],
+  providers: [HttpClientModule, PrecadastroService, GgizPnewsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
