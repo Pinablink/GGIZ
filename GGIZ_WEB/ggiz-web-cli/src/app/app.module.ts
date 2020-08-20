@@ -1,39 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-//import { GgizPublicoModule } from './ggiz-publico/ggiz-publico.module';
-import { GgizSobreModule } from './publico/ggiz-sobre/ggiz-sobre.module';
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PrecadastroService } from './../app/service/precadastro.service';
-import { GgizPnewsService } from './service/ggiz-pnews.service';
-import { GgizInfoModule } from './publico/ggiz-info/ggiz-info.module';
-import { GgizNoticiasModule } from './publico/ggiz-noticias/ggiz-noticias.module';
-
+import { HeaderComponent } from './component/ggiz/header/header.component';
+import { InfoTecComponent } from './view/ggiz/info/info-tec/info-tec.component';
+import { AboutComponent } from './view/ggiz/info/about/about.component';
+import { NoticiaComponent } from './view/ggiz/news/noticia/noticia.component';
+import { NoticiaLerComponent } from './view/ggiz/news/noticia-ler/noticia-ler.component';
+import { CadastroComponent } from './view/ggiz/cadastro/cadastro.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    InfoTecComponent,
+    AboutComponent,
+    NoticiaComponent,
+    NoticiaLerComponent,
     CadastroComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GgizSobreModule,
     HttpClientModule,
-    FormsModule,
+    BrowserAnimationsModule,
     ModalModule.forRoot(),
-    PopoverModule.forRoot(),
-    GgizInfoModule,
-    GgizNoticiasModule
+    FormsModule
   ],
-  providers: [HttpClientModule, PrecadastroService, GgizPnewsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

@@ -24,12 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-	            "src/styles.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "src/styles.css",
+              "src/assets/css/sb-admin-2.min.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -91,12 +91,11 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -129,6 +128,6 @@
   },
   "defaultProject": "ggiz-web-cli",
   "cli": {
-    "analytics": "6d1222da-a92b-4707-a187-cd9f833a60a1"
+    "analytics": "dfe4e2a9-2dd7-47ec-ab50-0155acd77029"
   }
 }

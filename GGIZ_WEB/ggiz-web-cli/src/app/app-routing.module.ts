@@ -1,33 +1,18 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { GgizSobreModule } from './publico/ggiz-sobre/ggiz-sobre.module';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { GgizMainComponent } from './main/ggiz-main/ggiz-main.component';
-import { GgizInfoModule } from './publico/ggiz-info/ggiz-info.module';
-import { GgizNoticiasModule } from './publico/ggiz-noticias/ggiz-noticias.module';
-
+import { CadastroComponent } from './view/ggiz/cadastro/cadastro.component';
+import { NoticiaComponent } from './view/ggiz/news/noticia/noticia.component';
+import { NoticiaLerComponent } from './view/ggiz/news/noticia-ler/noticia-ler.component';
+import { InfoTecComponent } from './view/ggiz/info/info-tec/info-tec.component';
+import { AboutComponent } from './view/ggiz/info/about/about.component';
 
 const routes: Routes = [
-  {path: '', component: GgizMainComponent},
-  {path: 'home', component: GgizMainComponent},
-  {path: 'noticias',
-    loadChildren: () => import('./publico/ggiz-noticias/ggiz-noticias.module').then(noticias => GgizNoticiasModule)
-  },
-  {path: 'sobre',
-  loadChildren: () => import('./publico/ggiz-sobre/ggiz-sobre-routing.module').then(sobre => GgizSobreModule)
-  },
-  {
-    path: 'info',
-    loadChildren: () => import('./publico/ggiz-info/ggiz-info-routing.module').then(info => GgizInfoModule)
-  }
-  //{path: 'noticia/:id/:titulo', loadChildren: './ggiz-publico/ggiz-publico.module#GGizPublicoRoutingModule'},
-  /*{path: '', component: GgizNoticiasComponent},
-  {path: 'home', component: GgizNoticiasComponent},
-  {path: 'preCad', component: CadastroComponent},
-  {path: 'noticia/:id/:titulo', component: GgizNewsLerComponent},
-  {path: 'sobre', component: GgizAboutComponent},
-  {path: 'info', component: GgizTecComponent }*/
+  {path: '', component: NoticiaComponent},
+  {path: 'precad', component: CadastroComponent},
+  {path: 'noticia/:id/:titulo', component: NoticiaLerComponent},
+  {path: 'info', component: InfoTecComponent},
+  {path: 'about', component: AboutComponent}
 ];
 
 @NgModule({
