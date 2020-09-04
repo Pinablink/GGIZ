@@ -9,6 +9,10 @@
           <!-- Fim Top Bar -->
           <!-- Begin Page Content -->
           <div class="container-fluid">
+            <div *ngIf="processamento" class="alert alert-primary mt-5" role="alert">
+              <span class="spinner-border spinner-border-sm"></span>
+              <span class="ml-3">E ae! Estamos nesse momento solicitando informações ao servidor. Isso para lhe manter sempre muito bem informado! Aguarde um momento...</span>
+            </div>
             <router-outlet></router-outlet>
           </div>
           <!-- Fim do Container Fluid-->

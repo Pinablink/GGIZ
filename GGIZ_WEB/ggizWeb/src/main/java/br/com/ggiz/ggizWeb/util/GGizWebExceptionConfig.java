@@ -13,6 +13,8 @@ import br.com.ggiz.ggizWeb.exception.GGizCadMailDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadMailUserDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadUserDupException;
 import br.com.ggiz.ggizWeb.exception.GGizCadUserException;
+import br.com.ggiz.ggizWeb.exception.GGizExpiredTokenException;
+import br.com.ggiz.ggizWeb.exception.GGizInvalidTokenException;
 import br.com.ggiz.ggizWeb.exception.GGizNewsLerNotFoundException;
 import br.com.ggiz.ggizWeb.exception.GGizNewsNotFoundException;
 import br.com.ggiz.ggizWeb.exception.GGizUnknownTokenException;
@@ -116,6 +118,26 @@ public class GGizWebExceptionConfig
 	public ResponseEntity<GGResponseMessage> ggizUnknownToken() {
 		 GGResponseMessage gResponseMessage = new GGResponseMessage();
 		 gResponseMessage.setMessage(gProperties.getMessage().getTokenunknown());
+		 gResponseMessage.setStatusCode(HttpStatus.FORBIDDEN.value());
+		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizInvalidTokenException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizInvalidToken() {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getTokenInvalid());
+		 gResponseMessage.setStatusCode(HttpStatus.FORBIDDEN.value());
+		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(gResponseMessage);
+	}
+	 
+	 @ExceptionHandler({
+		 GGizExpiredTokenException.class
+	 })
+	public ResponseEntity<GGResponseMessage> ggizExpiredToken() {
+		 GGResponseMessage gResponseMessage = new GGResponseMessage();
+		 gResponseMessage.setMessage(gProperties.getMessage().getTokenExpired());
 		 gResponseMessage.setStatusCode(HttpStatus.FORBIDDEN.value());
 		 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(gResponseMessage);
 	}

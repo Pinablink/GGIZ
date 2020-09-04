@@ -1,9 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { BroadnewsService } from './service/broadcast/broadnews.service';
 
 @Component({
   selector: 'ggiz-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  implements OnInit {
+
+
+  public processamento: boolean;
+
+  constructor(private broadcast: BroadnewsService){}
+
+  ngOnInit(): void {
+    this.processamento = true;
+    this.broadcast.getEmitter().subscribe((flag: boolean) => {
+        this.processamento = flag;
+    });
+  }
+
 }

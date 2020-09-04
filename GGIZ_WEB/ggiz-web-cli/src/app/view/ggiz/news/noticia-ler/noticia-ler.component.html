@@ -5,9 +5,26 @@
 <div *ngIf="errServer" class="alert alert-danger" role="alert">
   Ops! Não gostamos quando isso acontece! Mas ocorreu um problema no servidor e logo voltaremos ao normal!
 </div>
+
+<div *ngIf="lerrServerToken" class="alert alert-danger mt-5" role="alert">
+  Essa não!! Ocorreu um erro de validação de Token no Servidor. Vamos verificar esse problema! Retorne mais tarde!
+</div>
+
+<div *ngIf="lerrServerTokenOff" class="alert alert-danger mt-5" role="alert">
+  Não conseguimos negociar um Token com o Servidor! Tente novamente mais tarde!
+</div>
+
+<div *ngIf="lerrServerTokenInvalid" class="alert alert-danger mt-5" role="alert">
+  Olha, esta não é uma situação comum. O Token enviado ao servidor foi rejeitado. Deixa eu te explicar um dos motivos. Quando seu Browser solicita uma
+  informação que precisa ser validada. É solicitado um Token, e esse Token é enviado. Então seu Browser envia o Token e o pedido da informação. Caso esse
+  Token não seja reconhecido pelo Servidor. Você não tem acesso ao conteúdo solicitado. Mas isso não é culpa sua, por algum motivo o Token foi corrompido!!
+  Para nos ajudar, me faz um favor? Envie um email para weberasantos@gmail.com com o titulo ERR-TOKEN-INVALID. E analisaremos a situação. Obrigado e fique
+  conosco!
+</div>
+
 <ol *ngIf="viewNews" class="breadcrumb">
            <li class="breadcrumb-item">
-             <a href="#">Home</a>
+             <a [routerLink]="['/home']">Home</a>
            </li>
            <li class="breadcrumb-item">
             {{tituloNews}}

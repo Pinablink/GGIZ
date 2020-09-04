@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.google.gson.Gson;
-
 import br.com.ggiz.ggizWeb.domain.dto.GGUsuarioRequestCreateDTO;
 import br.com.ggiz.ggizWeb.repository.entity.Gusuario;
 import br.com.ggiz.ggizWeb.service.contract.GGService;
@@ -32,11 +31,14 @@ import br.com.ggiz.ggizWeb.util.GGTechEnvironment;
 @CrossOrigin(origins = "*")
 @RequestMapping("/ggiz/api/v1/pre/cad")
 public class GGPreCadController 
-	implements GGController {
+	implements GGEnvironment {
 	
 	@Autowired
 	@Qualifier("GGPreCadService")
 	private GGService gPreCadService;
+	
+	@Autowired
+	private Environment env;
 	
 	private Gusuario ref;
 	
@@ -83,7 +85,7 @@ public class GGPreCadController
 			new Thread() {
 				public void run () {
 					//Necessario logar esse ponto
-					new GGTechEnvironment(ref).inform();
+					new GGTechEnvironment(ref).inform(env.getProperty(""));//TODO Implementar antes de liberar versão para produção
 					//Necessario logar esse ponto
 				}
 			}.start();

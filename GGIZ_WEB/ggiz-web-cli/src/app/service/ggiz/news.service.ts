@@ -13,20 +13,21 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  public getNews(): Observable<PNewsModel[]> {
+  public getNews(strToken: string): Observable<PNewsModel[]> {
 
     const configHeader = {headers:  {
-      token: ''}
-  };
+      token: strToken}
+    };
 
-    return this.http.get<PNewsModel[]>('http://localhost:8080/ggiz/api/v1/noticias').
-    //return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
+    return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
       pipe(catchError(this.handleError));
   }
 
-  public showNews(id: string): Observable<GGizNewsLerModel> {
-    //return this.http.get<GGizNewsLerModel>('http://localhost:8080/ggiz/api/v1/noticia/ler/' + id)
-    return this.http.get<GGizNewsLerModel>('http://localhost:80/service/ggiz/noticia/' + id)
+  public showNews(strToken: string, id: string): Observable<GGizNewsLerModel> {
+    const configHeader = {headers:  {
+      token: strToken}
+    };
+    return this.http.get<GGizNewsLerModel>('http://localhost:80/service/ggiz/noticia/' + id, configHeader)
     .pipe(catchError(this.handleError));
   }
 

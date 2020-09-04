@@ -8,7 +8,8 @@ import { InfoTecComponent } from './view/ggiz/info/info-tec/info-tec.component';
 import { AboutComponent } from './view/ggiz/info/about/about.component';
 
 const routes: Routes = [
-  {path: '', component: NoticiaComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: NoticiaComponent},
   {path: 'precad', component: CadastroComponent},
   {path: 'noticia/:id/:titulo', component: NoticiaLerComponent},
   {path: 'info', component: InfoTecComponent},

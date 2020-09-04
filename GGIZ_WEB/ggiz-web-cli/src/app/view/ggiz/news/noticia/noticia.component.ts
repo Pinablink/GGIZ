@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { BroadnewsService } from './../../../../service/broadcast/broadnews.service';
 import { GGizTokenModel } from './../../../../model/ggiz-token.model';
 import { NewsService } from './../../../../service/ggiz/news.service';
 import { TokenService } from './../../../../service/ggiz/token.service';
@@ -18,30 +19,60 @@ export class NoticiaComponent implements OnInit {
   public viewNews: boolean;
   public errServer: boolean;
   public errServerToken: boolean;
+  public errServerTokenOff: boolean;
+  public errServerTokenInvalid: boolean;
 
-   constructor(private service: NewsService, private route: Router) {}
-
-  /*constructor(private route: Router, private serviceToken: GgizTokenService){
-    super();
-  }*/
+  constructor(private bnService: BroadnewsService, private nwservice: NewsService, private service: TokenService, private route: Router) {}
 
   public ngOnInit(): void {
-    /*this.serviceToken.getToken().subscribe((ggizToken: GGizTokenModel) =>
+    this.bnService.getEmitter().emit(true);
+    const vl: boolean = this.service.existToken();
+
+    this.notContent = false;
+    this.viewNews = false;
+    this.errServer = false;
+    this.errServerToken = false;
+    this.errServerTokenOff = false;
+    this.errServerTokenInvalid = false;
+
+    if (vl) {
+      this.loadNews(this.service.getToken());
+    } else {
+        this.loadToken();
+    }
+
+  }
+
+  public loadToken(): void {
+    this.service.loadToken().subscribe((ggizToken: GGizTokenModel) =>
     {
-       this.ggizToken = ggizToken;
-       alert('Token Obtido ' + this.ggizToken.token);
+      this.bnService.getEmitter().emit(false);
+      this.service.setToken(ggizToken.token);
+      this.loadNews(ggizToken);
     },
       err => {
+
+        this.bnService.getEmitter().emit(false);
+
         if (err.name === 'HttpErrorResponse') {
           const msgResponseErrorServer = err.error.message;
-          console.log('Teste de obtencao de token... Erro Ocorrido');
+          if ( msgResponseErrorServer == null) {
+            this.errServerTokenOff = true;
+          } else {
+            this.errServerTokenOff = false;
+          }
+
         }
       }
-    );*/
-    this.service.getNews().subscribe( (pNews: PNewsModel[]) =>
-     {
-       this.pNews = pNews;
+    );
 
+  }
+
+  public loadNews(ggizToken: GGizTokenModel): void {
+    this.nwservice.getNews(ggizToken.token).subscribe( (pNews: PNewsModel[]) =>
+     {
+       this.bnService.getEmitter().emit(false);
+       this.pNews = pNews;
        if (this.pNews.length >= 0) {
          this.notContent = false;
          this.errServer = false;
@@ -49,6 +80,7 @@ export class NoticiaComponent implements OnInit {
        }
      },
      err => {
+      this.bnService.getEmitter().emit(false);
 
       if (err.name === 'HttpErrorResponse') {
 
@@ -58,11 +90,21 @@ export class NoticiaComponent implements OnInit {
           this.notContent = true;
           this.errServer = false;
           this.viewNews = false;
+          this.errServerTokenInvalid = false;
         } else if (msgResponseErrorServer === 'ERR-TOKEN-UNKNOWN') {
           this.notContent = false;
           this.errServer = false;
-          this.viewNews = false;
+          this.viewNews       = false;
+          this.errServerTokenInvalid = false;
           this.errServerToken = true;
+        } else if (msgResponseErrorServer === 'ERR-TOKEN-INVALID') {
+          this.notContent = false;
+          this.errServer = false;
+          this.viewNews       = false;
+          this.errServerToken = false;
+          this.errServerTokenInvalid = true;
+        } else if (msgResponseErrorServer === 'ERR-TOKEN-EXPIRED') {
+            this.loadToken();
         } else {
           this.notContent = false;
           this.errServer = true;
@@ -73,7 +115,6 @@ export class NoticiaComponent implements OnInit {
 
      }
     );
-
   }
 
   public showNews(id: string, titulo: string): void {

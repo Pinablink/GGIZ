@@ -1,8 +1,6 @@
 export class GGizTokenModel {
 
-  public token: string;
+  token: string;
 
-  constructor() {}
-
-
+  public constructor() {}
 }

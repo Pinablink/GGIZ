@@ -16,6 +16,8 @@ public class GGizWebMessage {
 	private String newsLerNotFound;
 	private String broadcastRecpNotFound;
 	private String tokenunknown;
+	private String tokenInvalid;
+	private String tokenExpired;
 			
 	public String getUserNotFound() {
 		return userNotFound;
@@ -87,6 +89,22 @@ public class GGizWebMessage {
 
 	public void setTokenunknown(String tokenunknown) {
 		this.tokenunknown = tokenunknown;
+	}
+
+	public String getTokenInvalid() {
+		return tokenInvalid;
+	}
+
+	public void setTokenInvalid(String tokenInvalid) {
+		this.tokenInvalid = tokenInvalid;
+	}
+
+	public String getTokenExpired() {
+		return tokenExpired;
+	}
+
+	public void setTokenExpired(String tokenExpired) {
+		this.tokenExpired = tokenExpired;
 	}
 	
 	

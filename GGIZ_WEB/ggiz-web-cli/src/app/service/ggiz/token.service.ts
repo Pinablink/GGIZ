@@ -10,9 +10,28 @@ import { throwError } from 'rxjs';
 })
 export class TokenService {
 
-  public constructor(public httpClient: HttpClient) {}
+private ggiztoken: GGizTokenModel;
 
-  public getToken(): Observable<GGizTokenModel>{
+  public constructor(private httpClient: HttpClient) {
+    if (this.ggiztoken == null) {
+      this.ggiztoken = new GGizTokenModel();
+    }
+  }
+
+  public setToken(strToken: string): void {
+     this.ggiztoken.token = strToken;
+  }
+
+  public existToken(): boolean{
+    return (this.ggiztoken.token != null
+      && this.ggiztoken.token.length > 0);
+  }
+
+  public getToken(): GGizTokenModel{
+    return this.ggiztoken;
+  }
+
+  public loadToken(): Observable<GGizTokenModel>{
     return this.httpClient.get<GGizTokenModel>('http://localhost:80/service/ggiz/token').
     pipe(catchError(this.handleError));
   }

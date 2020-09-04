@@ -22,12 +22,6 @@ import br.com.ggiz.ggizWeb.sys.GGTokenSys;
 @RequestMapping("/ggiz/api/v1/token")
 public class GGTokenController {
 	
-	/*
-	 * Pesquisa de Criação de Token
-	 * Ponto de Criação, video Youtube
-	 * 41:45
-	 */
-	
 	@Autowired
 	@Qualifier("GGTokenService")
 	private GGService service;
@@ -35,6 +29,7 @@ public class GGTokenController {
 	@GetMapping
 	public ResponseEntity<Object> getToken (@RequestHeader Map<String, String> headers) {
 		final String strUserToken = headers.get("get_token");
+		final String token        = headers.get("token");
 		GGTokenRequestDTO ggToken = new GGTokenRequestDTO();
 		ggToken.setUser(strUserToken);
 		ggToken = (GGTokenRequestDTO)service.executeFind(ggToken);
