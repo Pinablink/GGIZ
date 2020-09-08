@@ -65,8 +65,6 @@ export class CadastroComponent implements OnInit {
           this.avisoSucess = true;
           this.avisoError = false;
           this.cadUsuario = false;
-        // Para futura analise
-        // window.location.href = '/aviso';
        }
       },
         err => {
