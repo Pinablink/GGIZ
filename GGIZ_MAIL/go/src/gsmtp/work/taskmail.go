@@ -1,6 +1,8 @@
 package work
 
-import "strings"
+import (
+	"strings"
+)
 
 const (
 	keyBroadcast  string = "#BROADCAST"
@@ -18,12 +20,12 @@ func Loadtasks(binaryData, serverBinary []byte) {
 	broadcast := &broadcast{}
 	warningcad := &warningcad{}
 
-	content := string(binaryData)
+	content := string(serverBinary)
 	params := strings.Split(content, ",")
 	from := params[0]
 	password := params[1]
 
-	strServerConf := string(serverBinary)
+	strServerConf := string(binaryData)
 	contentServerConf := strings.Split(strServerConf, ",")
 
 	broadcast.from = from

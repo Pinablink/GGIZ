@@ -12,7 +12,7 @@ func (ggmail *GGMail) Config(dados ...string) {
 	ggmail.inputRemet(dados[0])
 	ggmail.inputPassword(dados[1])
 	ggmail.inputDest(dados[2])
-	ggmail.inputMessage(dados[3])
+	ggmail.inputMessage(dados[3], dados[4])
 	showConsoleResultConfig()
 }
 
@@ -31,9 +31,9 @@ func (ggmail *GGMail) inputDest(vDest string) {
 	isValidToMail = true // Acrescentar melhoria aqui
 }
 
-func (ggmail *GGMail) inputMessage(vMessage string) {
+func (ggmail *GGMail) inputMessage(subject, vMessage string) {
 	var refMessage gMessage
-	refMessage.subject = "[GGIZ Broadcast]Usuarios Cadastrados"
+	refMessage.subject = subject
 	refMessage.message = vMessage
 	ggmail.cMessage = refMessage
 	isValidMessageMail = true
