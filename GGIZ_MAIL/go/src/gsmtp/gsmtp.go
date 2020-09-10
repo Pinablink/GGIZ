@@ -24,8 +24,10 @@ func main() {
 		if err != nil {
 			fmt.Println("GSMTP: Erro na obtencao dos dados para configuração do servidor de smtp")
 		} else {
-			work.Loadtasks(binaryData, serverBinary)
-			work.Exectask(order)
+		   mmap := work.Loadtasks(binaryData, serverBinary)
+		   fmt.Println(" --- Verificando transporte objeto ")
+		   fmt.Println(mmap)
+		   work.Exectask(mmap,order)
 		}
 	}
 }

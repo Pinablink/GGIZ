@@ -15,24 +15,10 @@ func (ggmail *GGMail) Send(refserversmtp GGServerMail) {
 	sMessage := "Subject:" + ggmail.cMessage.subject + "\n\n" + ggmail.cMessage.message
 	refserversmtp.Serversmtp = strings.TrimSpace(refserversmtp.Serversmtp)
 	refserversmtp.Pathserver = strings.TrimSpace(refserversmtp.Pathserver)
-
-	/*fmt.Println(ggmail.cMessage.subject)
-	fmt.Println(refserversmtp.Serversmtp)
-	fmt.Println(ggmail.from)
-	fmt.Println(ggmail.pass)
-	fmt.Println(refserversmtp.Pathserver)
-	fmt.Println(dest)
-	fmt.Println(sMessage)
-
-	fmt.Println("")
-	fmt.Println("")
-	fmt.Println("")
-	fmt.Println("")*/
-
-	auth := smtp.PlainAuth("", ggmail.from, ggmail.pass, refserversmtp.Pathserver)
+	auth := smtp.PlainAuth("", strings.TrimSpace(ggmail.from), strings.TrimSpace(ggmail.pass), refserversmtp.Pathserver)
 	err := smtp.SendMail(refserversmtp.Serversmtp,
 		auth,
-		ggmail.from,
+		strings.TrimSpace(ggmail.from),
 		dest,
 		[]byte(sMessage))
 

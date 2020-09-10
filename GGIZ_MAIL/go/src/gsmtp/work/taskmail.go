@@ -2,21 +2,18 @@ package work
 
 import (
 	"strings"
+        "fmt"
 )
 
 const (
-	keyBroadcast  string = "#BROADCAST"
-	keyWarningCad string = "#WARNING_CAD"
+	keyBroadcast  string = "BROADCAST"
+	keyWarningCad string = "WARNING_CAD"
 )
 
-var (
-	tasks map[string]worksmtpmail
-)
 
 //Loadtasks Carrega as tarefas pertinentes ao envio de email
-func Loadtasks(binaryData, serverBinary []byte) {
-
-	tasks = make(map[string]worksmtpmail, 2)
+func Loadtasks(binaryData, serverBinary []byte) map[string]worksmtpmail {
+        tasks := make(map[string]worksmtpmail, 2)
 	broadcast := &broadcast{}
 	warningcad := &warningcad{}
 
@@ -38,9 +35,18 @@ func Loadtasks(binaryData, serverBinary []byte) {
 
 	tasks[keyBroadcast] = broadcast
 	tasks[keyWarningCad] = warningcad
+	fmt.Println(tasks)
+	return tasks
 }
 
 //Exectask Irá executar a tarefa configurada no ambiente
-func Exectask(strOrder string) {
-	tasks[strOrder].wsend()
+func Exectask(taskOb map[string]worksmtpmail,  strOrder string) {
+       key := strings.TrimSpace(strOrder)
+       process, teste := taskOb[key]
+
+	if teste {
+	   process.wsend()	
+        } else {
+          fmt.Println("Processo desconhecido")		
+	}
 }
