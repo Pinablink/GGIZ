@@ -1,14 +1,12 @@
 package mail
 
 import (
-	"fmt"
-	"log"
 	"net/smtp"
 	"strings"
 )
 
 // Send Envia email utilizando os parâmetros informados
-func (ggmail *GGMail) Send(refserversmtp GGServerMail) {
+func (ggmail *GGMail) Send(refserversmtp GGServerMail) (bool, error) {
 	dest := make([]string, 1)
 	dest[0] = ggmail.to
 
@@ -23,9 +21,9 @@ func (ggmail *GGMail) Send(refserversmtp GGServerMail) {
 		[]byte(sMessage))
 
 	if err != nil {
-		log.Fatal(err)
-	} else {
-		fmt.Println("Email enviado...")
+		return false, err
 	}
+
+	return true, nil
 
 }

@@ -14,7 +14,7 @@ type broadcast struct {
 	contentServerConf []string
 }
 
-func (ref *broadcast) wsend() {
+func (ref *broadcast) Wsend() (bool, error) {
 	var smtpMail mail.GGServerMail
 	var robotMail mail.GGMail
 
@@ -33,11 +33,18 @@ func (ref *broadcast) wsend() {
 
 		for _, userReceptorRef := range listUserDest {
 			robotMail.Config(ref.from, ref.password, strings.TrimSpace(userReceptorRef.Email), strSubject, strMessage)
-			robotMail.Send(smtpMail)
+			ok, err := robotMail.Send(smtpMail)
+
+			if err != nil {
+				fmt.Println(err)
+				return ok, err
+			}
+
 			countMail++
 		}
 
 		fmt.Printf("Sistema de Broadcast processou com o envio de %d email", countMail)
 	}
 
+	return true, nil
 }

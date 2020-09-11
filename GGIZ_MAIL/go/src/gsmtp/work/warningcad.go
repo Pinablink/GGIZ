@@ -12,7 +12,7 @@ type warningcad struct {
 	contentServerConf []string
 }
 
-func (ref *warningcad) wsend() {
+func (ref *warningcad) Wsend() (bool, error) {
 	var smtpMail mail.GGServerMail
 	var robotMail mail.GGMail
 	smtpMail.Serversmtp = ref.contentServerConf[0]
@@ -22,8 +22,14 @@ func (ref *warningcad) wsend() {
 
 	if process {
 		robotMail.Config(ref.from, ref.password, "pinablink@hotmail.com", msg)
-		robotMail.Send(smtpMail)
-	} else {
-		fmt.Println("Não houve ocorrencia de cadastro para o envio de email")
+		ok, err := robotMail.Send(smtpMail)
+
+		if err != nil {
+			fmt.Println(err)
+			return ok, err
+		}
+
 	}
+
+	return true, nil
 }
