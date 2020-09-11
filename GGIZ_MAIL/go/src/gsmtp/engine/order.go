@@ -5,6 +5,17 @@ import (
 	"os"
 )
 
+//AjustOrder Altera a Ordem do Sistema para envio de emails
+func AjustWarningCadOrder() error {
+	path := os.Getenv("GGSMTP")
+	return ioutil.WriteFile(path, []byte("WARNING_CAD"), 0644)
+}
+
+func AjustBroadcastOrder() error {
+	path := os.Getenv("GGSMTP")
+	return ioutil.WriteFile(path, []byte("BROADCAST"), 0644)
+}
+
 // GetOrder Obtém do Ambiente a Ordem de trabalho.
 func GetOrder() (string, error) {
 	path := os.Getenv("GGSMTP")

@@ -3,7 +3,9 @@ package work
 import (
 	"fmt"
 	"gextractdata/asmmessage"
+	"gsmtp/engine"
 	"gsmtp/mail"
+	"log"
 )
 
 type warningcad struct {
@@ -12,9 +14,24 @@ type warningcad struct {
 	contentServerConf []string
 }
 
+func uBroadcastOrder() {
+	err := engine.AjustBroadcastOrder()
+
+	if err != nil {
+		log.Fatal(err)
+		fmt.Println("Alteração de Ordem falhou")
+	} else {
+		fmt.Println("Ordem alterada com sucesso")
+	}
+
+}
+
 func (ref *warningcad) Wsend() (bool, error) {
+	fmt.Println("Warning Cad Order")
 	var smtpMail mail.GGServerMail
 	var robotMail mail.GGMail
+
+	uBroadcastOrder()
 	smtpMail.Serversmtp = ref.contentServerConf[0]
 	smtpMail.Pathserver = ref.contentServerConf[1]
 	// Chamada de um cache redis

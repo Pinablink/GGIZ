@@ -20,9 +20,11 @@ type GroupUserReceptor struct {
 	Message      string         `json:"message"`
 }
 
-//GetService Teste
 func getService() string {
-	return strings.TrimSpace(os.Getenv("GGIZ_RECIPIENT_SERVICE"))
+	sservice := strings.TrimSpace(os.Getenv("GGIZ_RECIPIENT_SERVICE"))
+	fmt.Println("Path do Servico no Contexto")
+	fmt.Println(sservice)
+	return sservice
 }
 
 //GetListRecipient Obtem a Lista para o envio de mensagem de email

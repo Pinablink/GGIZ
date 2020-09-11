@@ -2,7 +2,9 @@ package work
 
 import (
 	"fmt"
+	"gsmtp/engine"
 	"gsmtp/mail"
+	"log"
 	"strings"
 
 	recipient "ggiz.recipient/ggiz.recipient.service"
@@ -14,17 +16,31 @@ type broadcast struct {
 	contentServerConf []string
 }
 
+func uWarningCadOrder() {
+	err := engine.AjustWarningCadOrder()
+
+	if err != nil {
+		log.Fatal(err)
+		fmt.Println("Alteração de Ordem falhou")
+	} else {
+		fmt.Println("Ordem alterada com sucesso")
+	}
+
+}
+
 func (ref *broadcast) Wsend() (bool, error) {
+	fmt.Println("Broadcast Order")
 	var smtpMail mail.GGServerMail
 	var robotMail mail.GGMail
 
 	var mrecipient recipient.GroupUserReceptor
-
+	uWarningCadOrder()
 	mrecipient = recipient.GetListRecipient()
 	var strMessage string = mrecipient.Message
 	var listUserDest []recipient.UserReceptor = mrecipient.ListUserDest
 
 	if len(listUserDest) > 0 && len(strMessage) > 0 {
+		fmt.Println("Destinatarios de Email encontrado. Preparando o sistema para o envio")
 		strMessage = strings.TrimSpace(strMessage)
 		var countMail uint = 0
 		var strSubject string = "[GGIZ] Olá!! Tenho novidades!"
