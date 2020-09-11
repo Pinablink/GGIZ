@@ -19,7 +19,7 @@ func (ref *broadcast) Wsend() (bool, error) {
 	var robotMail mail.GGMail
 
 	var mrecipient recipient.GroupUserReceptor
-
+        fmt.Println("Chegou no Wsend")
 	mrecipient = recipient.GetListRecipient()
 	var strMessage string = mrecipient.Message
 	var listUserDest []recipient.UserReceptor = mrecipient.ListUserDest
