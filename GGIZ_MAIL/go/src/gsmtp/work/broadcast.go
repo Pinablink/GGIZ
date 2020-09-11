@@ -19,7 +19,7 @@ func (ref *broadcast) Wsend() (bool, error) {
 	var robotMail mail.GGMail
 
 	var mrecipient recipient.GroupUserReceptor
-        fmt.Println("Chegou no Wsend")
+
 	mrecipient = recipient.GetListRecipient()
 	var strMessage string = mrecipient.Message
 	var listUserDest []recipient.UserReceptor = mrecipient.ListUserDest
@@ -32,7 +32,10 @@ func (ref *broadcast) Wsend() (bool, error) {
 		smtpMail.Pathserver = ref.contentServerConf[1]
 
 		for _, userReceptorRef := range listUserDest {
-			robotMail.Config(ref.from, ref.password, strings.TrimSpace(userReceptorRef.Email), strSubject, strMessage)
+			mmail := strings.TrimSpace(userReceptorRef.Email)
+			fmt.Println("Email Processado e Pronto Para ser enviado")
+			fmt.Println(mmail)
+			robotMail.Config(ref.from, ref.password, mmail, strSubject, strMessage)
 			ok, err := robotMail.Send(smtpMail)
 
 			if err != nil {
@@ -43,7 +46,9 @@ func (ref *broadcast) Wsend() (bool, error) {
 			countMail++
 		}
 
-		fmt.Printf("Sistema de Broadcast processou com o envio de %d email", countMail)
+		fmt.Println("Quantidade de Email enviado pelo sistema")
+		fmt.Println(countMail)
+		fmt.Println("---------------------------------------------------")
 	}
 
 	return true, nil

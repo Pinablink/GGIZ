@@ -5,7 +5,6 @@ import (
 	"log"
 	"net"
 	"net/rpc"
-        "fmt"
 
 	grpcst "ggiz.rpc/rpcst"
 )
@@ -25,8 +24,7 @@ func main() {
 	}
 
 	grpcst.RefMapInterface = work.LoadTaskWork()
-	fmt.Println(grpcst.RefMapInterface)
-        listener := new(grpcst.Listener)
+	listener := new(grpcst.Listener)
 	rpc.Register(listener)
 	rpc.Accept(pt)
 }
