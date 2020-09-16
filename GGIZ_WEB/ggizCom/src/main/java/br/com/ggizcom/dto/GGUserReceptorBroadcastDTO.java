@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Weber Alves dos Santos (Pinablink)
  *
  */
-public class GGUserReceptorBroadcast 
+public class GGUserReceptorBroadcastDTO 
 	implements Serializable {
 
 	/**

@@ -32,7 +32,7 @@ private ggiztoken: GGizTokenModel;
   }
 
   public loadToken(): Observable<GGizTokenModel>{
-    return this.httpClient.get<GGizTokenModel>('http://localhost:80/service/ggiz/token').
+    return this.httpClient.get<GGizTokenModel>('/service/ggiz/token').
     pipe(catchError(this.handleError));
   }
 

@@ -3,10 +3,14 @@ package br.com.ggizcom.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import br.com.ggizcom.dto.GGMessageDisableDTO;
 import br.com.ggizcom.dto.GGReceptorBroadcastResponseDTO;
-import br.com.ggizcom.dto.GGUserReceptorBroadcast;
+import br.com.ggizcom.dto.GGUserReceptorBroadcastDTO;
 import br.com.ggizcom.entity.Gbroadcast;
 import br.com.ggizcom.entity.Gbroadcastctr;
 import br.com.ggizcom.entity.Gusuario;
@@ -23,6 +27,7 @@ public class GGBroadcastctrService {
 
 	@Autowired
 	private GGBroadcastctrRepository repository;
+	private static final String FLAG_STATUS_MESSAGE_SENT = "1";
 	
 	@Autowired
 	private GGBroadcastRespository broadcastRepository;
@@ -44,8 +49,8 @@ public class GGBroadcastctrService {
 	
 	private void formatResponse (Gbroadcast bm, GGReceptorBroadcastResponseDTO gGresponse, 
 								List<Gbroadcastctr> list) {
-		List<GGUserReceptorBroadcast> listResponse =
-				new ArrayList<GGUserReceptorBroadcast>();
+		List<GGUserReceptorBroadcastDTO> listResponse =
+				new ArrayList<GGUserReceptorBroadcastDTO>();
 		
 		Iterator<Gbroadcastctr> iterBroadcast =  list.iterator();
 		Gusuario refGUsuario;
@@ -53,14 +58,23 @@ public class GGBroadcastctrService {
 		while (iterBroadcast.hasNext()) {
 			Gbroadcastctr ref = iterBroadcast.next();
 			refGUsuario = ref.getGusuario();
-			GGUserReceptorBroadcast guser = new GGUserReceptorBroadcast();
+			GGUserReceptorBroadcastDTO guser = new GGUserReceptorBroadcastDTO();
 			guser.setEmail(refGUsuario.getEmail());
 			guser.setNome(refGUsuario.getNome());
 			listResponse.add(guser);
 		}
 		
 		gGresponse.setMessage(bm.getMessage());
+		gGresponse.setId(bm.getId());
 		gGresponse.setListUserDest(listResponse);
 		
+	}
+	
+	public void disableMessage (GGMessageDisableDTO refDisable) {
+		Long id = Long.valueOf(refDisable.getId());
+		Optional<Gbroadcast> optGbroadcast = this.broadcastRepository.findById(id);
+		Gbroadcast gbroadcast = optGbroadcast.get();
+		gbroadcast.setMsgenvbroad(GGBroadcastctrService.FLAG_STATUS_MESSAGE_SENT);
+		this.broadcastRepository.save(gbroadcast);
 	}
 }

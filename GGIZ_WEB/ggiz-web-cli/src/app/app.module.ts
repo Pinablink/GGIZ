@@ -17,7 +17,6 @@ import { CadastroComponent } from './view/ggiz/cadastro/cadastro.component';
 
 
 import { TokenService } from './service/ggiz/token.service';
-import { ComandoComponent } from './component/ggiz/header/comando/comando.component';
 import { NgShowComandDirective } from './shared/ng-show-comand.directive';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { NgShowComandDirective } from './shared/ng-show-comand.directive';
     NoticiaComponent,
     NoticiaLerComponent,
     CadastroComponent,
-    ComandoComponent,
     NgShowComandDirective
   ],
   imports: [

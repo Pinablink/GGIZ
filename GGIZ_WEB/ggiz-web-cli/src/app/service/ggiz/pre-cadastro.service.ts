@@ -14,8 +14,8 @@ export class PreCadastroService {
   constructor(private http: HttpClient) { }
 
   cadUsuario(refCadastro: CadastroModel): Observable<any> {
-     //return this.http.post('http://191.252.103.83:8080/ggiz/api/v1/pre/cad', refCadastro);
-     return this.http.post('http://localhost:8080/ggiz/api/v1/pre/cad', refCadastro);
+     return this.http.post('https://191.252.103.83:8080/ggiz/api/v1/pre/cad', refCadastro);
+     //return this.http.post('http://localhost:8080/ggiz/api/v1/pre/cad', refCadastro);
   }
 
   handleError(error: HttpErrorResponse) {

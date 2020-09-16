@@ -19,7 +19,7 @@ export class NewsService {
       token: strToken}
     };
 
-    return this.http.get<PNewsModel[]>('http://localhost:80/service/ggiz/noticias', configHeader).
+    return this.http.get<PNewsModel[]>('/service/ggiz/noticias', configHeader).
       pipe(catchError(this.handleError));
   }
 
@@ -27,7 +27,7 @@ export class NewsService {
     const configHeader = {headers:  {
       token: strToken}
     };
-    return this.http.get<GGizNewsLerModel>('http://localhost:80/service/ggiz/noticia/' + id, configHeader)
+    return this.http.get<GGizNewsLerModel>('/service/ggiz/noticia/' + id, configHeader)
     .pipe(catchError(this.handleError));
   }
 
