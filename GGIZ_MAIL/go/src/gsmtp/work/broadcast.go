@@ -36,6 +36,7 @@ func (ref *broadcast) Wsend() (bool, error) {
 	var mrecipient recipient.GroupUserReceptor
 	uWarningCadOrder()
 	mrecipient = recipient.GetListRecipient()
+	var idBroadcast int = mrecipient.ID
 	var strMessage string = mrecipient.Message
 	var listUserDest []recipient.UserReceptor = mrecipient.ListUserDest
 
@@ -65,6 +66,9 @@ func (ref *broadcast) Wsend() (bool, error) {
 		fmt.Println("Quantidade de Email enviado pelo sistema")
 		fmt.Println(countMail)
 		fmt.Println("---------------------------------------------------")
+		recipient.PostDisableMessage(idBroadcast)
+	} else {
+		fmt.Println("Não existem mensagens no sistema para envio.")
 	}
 
 	return true, nil

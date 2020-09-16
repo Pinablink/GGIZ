@@ -1,10 +1,12 @@
 package recipient
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -16,13 +18,27 @@ type UserReceptor struct {
 
 //GroupUserReceptor Possui uma Lista com os Usuários do Sistema GGIZ para envio de mensagem. E a mensagem a ser enviada
 type GroupUserReceptor struct {
+	ID           int            `json:"id"`
 	ListUserDest []UserReceptor `json:"listUserDest"`
 	Message      string         `json:"message"`
+}
+
+//DisableMessage Estrutura para informar ao banco de dados que a mensagem do Id não deverá ser mais processado
+type DisableMessage struct {
+	ID     string `json:"id"`
+	Status string `json:"status"`
 }
 
 func getService() string {
 	sservice := strings.TrimSpace(os.Getenv("GGIZ_RECIPIENT_SERVICE"))
 	fmt.Println("Path do Servico no Contexto")
+	fmt.Println(sservice)
+	return sservice
+}
+
+func getServiceOffMessage() string {
+	sservice := strings.TrimSpace(os.Getenv("GGIZ_RECIPIENT_OFF_MESSAGE"))
+	fmt.Println("Path do serviço pare desabilitar mensagem na base de dados")
 	fmt.Println(sservice)
 	return sservice
 }
@@ -46,4 +62,31 @@ func GetListRecipient() GroupUserReceptor {
 	}
 
 	return gReceptors
+}
+
+//PostDisableMessage Realiza o procedimento de cancelamento do envio da mensagem
+func PostDisableMessage(refID int) {
+	var strID string = strconv.Itoa(refID)
+
+	var disableMessagePlayLoad DisableMessage = DisableMessage{strID, "UNKNOW"}
+	mBytes, err := json.Marshal(disableMessagePlayLoad)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro na tentativa de configurar o cancelamento de envio de mensagem")
+	} else {
+		httpClient := http.Client{}
+		req, err := http.NewRequest("POST", getServiceOffMessage(), bytes.NewBuffer(mBytes))
+
+		if err != nil {
+			fmt.Println("Ocorreu um erro na preparação do documento de envio da solicitação de cancelamento da mensagem")
+		} else {
+			req.Header.Set("Content-Type", "application/json")
+			_, err := httpClient.Do(req)
+
+			if err != nil {
+				fmt.Println("Ocorreu um erro no envio da requisição de cancelamento de envio de mensagem")
+			}
+		}
+	}
+
 }
