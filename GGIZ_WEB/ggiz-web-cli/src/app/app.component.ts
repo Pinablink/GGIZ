@@ -11,15 +11,30 @@ export class AppComponent  implements OnInit {
 
 
   public processamento: boolean;
+  public screenOk: boolean;
 
   constructor(private router: Router, private broadcast: BroadnewsService){}
 
   ngOnInit(): void {
-    this.router.navigate(['/home']);
-    this.processamento = true;
-    this.broadcast.getEmitter().subscribe((flag: boolean) => {
-        this.processamento = flag;
-    });
+    this.verScreen();
   }
 
+  public verScreen(): void {
+
+    const sw = (screen.width < 1366);
+    const sh = (screen.height < 768);
+
+    this.screenOk = true;
+
+    if (sw || sh) {
+      this.screenOk = false;
+    } else {
+        this.router.navigate(['/home']);
+        this.processamento = true;
+        this.broadcast.getEmitter().subscribe((flag: boolean) => {
+        this.processamento = flag;
+      });
+    }
+
+  }
 }

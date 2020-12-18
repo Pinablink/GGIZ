@@ -8,14 +8,18 @@ import { NoticiaLerComponent } from './view/ggiz/news/noticia-ler/noticia-ler.co
 import { InfoTecComponent } from './view/ggiz/info/info-tec/info-tec.component';
 import { AboutComponent } from './view/ggiz/info/about/about.component';
 
+
+import { TesteViewComponent } from './des/model/teste-view/teste-view.component';
+
 const routes: Routes = [
  // {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '', component: AppComponent},
-  {path: 'home', component: NoticiaComponent},
-  {path: 'precad', component: CadastroComponent},
+   {path: 'home', component: NoticiaComponent},
   {path: 'noticia/:id/:titulo', component: NoticiaLerComponent},
+ // {path: 'noticia', component: NoticiaLerComponent},
   {path: 'info', component: InfoTecComponent},
-  {path: 'about', component: AboutComponent}
+  {path: 'about', component: AboutComponent},
+  {path: 'teste', component: TesteViewComponent}
 ];
 
 @NgModule({

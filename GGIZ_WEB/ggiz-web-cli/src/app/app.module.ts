@@ -18,6 +18,13 @@ import { CadastroComponent } from './view/ggiz/cadastro/cadastro.component';
 
 import { TokenService } from './service/ggiz/token.service';
 import { NgShowComandDirective } from './shared/ng-show-comand.directive';
+import { NgShowReadNewsDirective } from './shared/ng-show-read-news.directive';
+import { TesteViewComponent } from './des/model/teste-view/teste-view.component';
+import { RbarIComponent } from './component/ggiz/rbar-i/rbar-i.component';
+import { GICompDirective } from './shared/g-icomp.directive';
+import { NewsInputComponent } from './view/ggiz/news/noticia-ler/news-input/news-input.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,7 +35,12 @@ import { NgShowComandDirective } from './shared/ng-show-comand.directive';
     NoticiaComponent,
     NoticiaLerComponent,
     CadastroComponent,
-    NgShowComandDirective
+    NgShowComandDirective,
+    NgShowReadNewsDirective,
+    TesteViewComponent,
+    RbarIComponent,
+    GICompDirective,
+    NewsInputComponent
   ],
   imports: [
     BrowserModule,

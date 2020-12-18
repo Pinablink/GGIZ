@@ -23,24 +23,23 @@
   conosco!
 </div>
 
-<div *ngIf="viewNews" class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 style="color: white;" class="h3 mb-0">Noticias</h1>
-</div>
-<div *ngIf="viewNews" class="row">
-
-  <div *ngFor="let ggnews of pNews" class="col-lg-6">
-    <!-- Default Card Example -->
-    <div class="card mb-4">
-      <div class="card-header">
-        {{ggnews.titulo}}
-      </div>
-      <div class="card-body">
-        {{ggnews.descricao}}
-      </div>
-      <div class="card-body">
-        <button (click)="showNews(ggnews.id,ggnews.titulo)" type="button" class="btn btn-primary">Quero Ler mais!</button>
-       </div>
+<div>
+  <div *ngIf="viewNews" class="row">
+    <div>
+        <h1 style="color: white;" class="h3 mb-4">Noticias e Informações Quentes da Tecnologia e Comunidade Maker!</h1>
     </div>
   </div>
-
+  <div *ngIf="viewNews"  class="row">
+       <div *ngFor="let ggnews of pNews" style= " width:300px;" class="card mb-3 ml-2">
+         <div class="card-header">
+          {{ggnews.titulo}}
+         </div>
+         <div style="height:120px;" class="card-body">
+          {{ggnews.descricao}}
+         </div>
+         <div class="card-body">
+          <button (click)="showNews(ggnews.id,ggnews.titulo)" type="button" class="btn btn-primary">Quero Ler mais!</button>
+          </div>
+       </div>
+  </div>
 </div>

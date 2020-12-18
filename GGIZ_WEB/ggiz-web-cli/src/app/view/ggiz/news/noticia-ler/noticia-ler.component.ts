@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TokenService } from './../../../../service/ggiz/token.service';
 import { NewsService } from './../../../../service/ggiz/news.service';
 import { GGizNewsLerModel } from './../../../../model/ggiz-news-ler-model';
 import { GGizTokenModel } from './../../../../model/ggiz-token.model';
 import { BroadnewsService } from './../../../../service/broadcast/broadnews.service';
+// import { NgShowReadNewsDirective } from './../../../../shared/ng-show-read-news.directive';
+import { BroadcastReadNewsService } from './../../../../service/broadcast/broadcast-read-news.service';
+import { DirConsService } from './../../../../service/ggiz/dir-cons.service';
 
 @Component({
   selector: 'ggiz-noticia-ler',
   templateUrl: './noticia-ler.component.html',
   styleUrls: ['./noticia-ler.component.css']
 })
-export class NoticiaLerComponent implements OnInit {
+export class NoticiaLerComponent implements OnInit  {
 
   public idNews: string;
   public tituloNews: string;
@@ -22,11 +25,13 @@ export class NoticiaLerComponent implements OnInit {
   public lerrServerToken: boolean;
   public lerrServerTokenOff: boolean;
   public lerrServerTokenInvalid: boolean;
+  private texto: string;
 
   constructor(private bnService: BroadnewsService,
               private tokenservice: TokenService,
               private routed: ActivatedRoute,
-              private service: NewsService) {}
+              private service: NewsService) {
+  }
 
   ngOnInit(): void {
     this.bnService.getEmitter().emit(true);
@@ -41,8 +46,9 @@ export class NoticiaLerComponent implements OnInit {
     if (vl) {
       this.loadReadNews(this.tokenservice.getToken());
     } else {
-        this.loadToken();
+      this.loadToken();
     }
+
   }
 
   public loadToken(): void {
@@ -114,6 +120,10 @@ export class NoticiaLerComponent implements OnInit {
 
      });
 
+  }
+
+  public loadSpanNews(): void {
+    console.log(`TESTANDO ONLOAD`);
   }
 
 }

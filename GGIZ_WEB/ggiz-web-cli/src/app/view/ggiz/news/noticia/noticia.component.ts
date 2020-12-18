@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BroadnewsService } from './../../../../service/broadcast/broadnews.service';
@@ -6,6 +6,8 @@ import { GGizTokenModel } from './../../../../model/ggiz-token.model';
 import { NewsService } from './../../../../service/ggiz/news.service';
 import { TokenService } from './../../../../service/ggiz/token.service';
 import { PNewsModel } from './../../../../model/pnews.model';
+import { RbarIComponent } from './../../../../component/ggiz/rbar-i/rbar-i.component';
+import { GICompDirective } from './../../../../shared/g-icomp.directive';
 
 @Component({
   selector: 'ggiz-noticia',
@@ -14,6 +16,7 @@ import { PNewsModel } from './../../../../model/pnews.model';
 })
 export class NoticiaComponent implements OnInit {
 
+  @ViewChild(GICompDirective, {static: true}) ggizGIComp: GICompDirective;
   public pNews: PNewsModel[];
   public notContent: boolean;
   public viewNews: boolean;
@@ -22,7 +25,11 @@ export class NoticiaComponent implements OnInit {
   public errServerTokenOff: boolean;
   public errServerTokenInvalid: boolean;
 
-  constructor(private bnService: BroadnewsService, private nwservice: NewsService, private service: TokenService, private route: Router) {}
+  constructor(private bnService: BroadnewsService,
+              private nwservice: NewsService,
+              private service: TokenService,
+              private route: Router,
+              private factory: ComponentFactoryResolver) {}
 
   public ngOnInit(): void {
     this.bnService.getEmitter().emit(true);
@@ -42,6 +49,7 @@ export class NoticiaComponent implements OnInit {
     }
 
   }
+
 
   public loadToken(): void {
     this.service.loadToken().subscribe((ggizToken: GGizTokenModel) =>

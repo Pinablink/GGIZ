@@ -29,7 +29,7 @@ public class GGNoticiasService
 	
 	@Override
 	public Object executeFindAll () {
-		List<Gnoticia> list =  this.repository.findAll();
+		List<Gnoticia> list =  this.repository.getOrderNewsDate();//this.repository.findAll();
 		return convert(list);
 	}
 	

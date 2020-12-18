@@ -1,4 +1,4 @@
-    <!-- Page Wrapper -->
+<!-- Page Wrapper -->
 <div id="wrapper">
       <!-- Content Wrapper -->
       <div id="content-wrapper" style="background-image: url(assets/img/ggizBack.jpg)" class="d-flex flex-column">
@@ -9,19 +9,35 @@
           <!-- Fim Top Bar -->
           <!-- Begin Page Content -->
           <div class="container-fluid">
-            <div *ngIf="processamento" class="alert alert-primary mt-5" role="alert">
-              <span class="spinner-border spinner-border-sm"></span>
-              <span class="ml-3">E ae! Estamos nesse momento solicitando informações ao servidor. Isso para lhe manter sempre muito bem informado! Aguarde um momento...</span>
-            </div>
-            <router-outlet></router-outlet>
+                <div class="row">
+                    <div class="col-9">
+                      <div>
+                        <div *ngIf="processamento" class="alert alert-primary mt-5" role="alert">
+                          <span class="spinner-border spinner-border-sm"></span>
+                          <span class="ml-3">E ae! Estamos nesse momento solicitando informações ao servidor. Isso para lhe manter sempre muito bem informado! Aguarde um momento...</span>
+                        </div>
+                        <div *ngIf="screenOk; then screenComp; else screenNotOk"></div>
+                        <ng-template #screenComp>
+                           <router-outlet></router-outlet>
+                        </ng-template>
+                        <ng-template #screenNotOk>
+                            <p style="color: white;" class="h3">Ops! Isso realmente é chato quando acontece! A Plataforma GGIZ está sendo desenvolvida para executar em dispositivos onde a resolução minima da tela é de 1366 x 768. As operações existentes e que estão por vir não se apresentará de forma satisfatória em reslouções menores! </p>
+                        </ng-template>
+                      </div>
+                     </div>
+                     <div *ngIf="screenOk" class="col-3 fixebar">
+                      <ggiz-rbar-i></ggiz-rbar-i>
+                     </div>
+                </div>
           </div>
           <!-- Fim do Container Fluid-->
-           </div>
+        </div>
         <!-- End of Main Content -->
       </div>
       <!-- End of Content Wrapper -->
 </div>
 <!-- End of Page Wrapper -->
-<a class="scroll-to-top rounded" href="#page-top">
+<a style="z-index: 2;" class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
